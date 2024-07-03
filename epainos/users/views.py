@@ -133,9 +133,9 @@ class DashboardIndex(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        tranx_qs = Transactions.objects.all()
+        tranx_qs = Transactions.objects.filter(settled=True)
         contestant_qs = Contestant.objects.all().order_by("-number_of_vote")
-        total_amount_paid = Transactions.objects.aggregate(total=Sum('amount_paid'))['total']
+        total_amount_paid = Transactions.objects.filter(settled=True).aggregate(total=Sum('amount_paid'))['total']
         total_vote = Contestant.objects.aggregate(total=Sum('number_of_vote'))['total']
 
         # Add additional context data if needed
