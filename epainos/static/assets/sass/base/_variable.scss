@@ -1,0 +1,134 @@
+:root {
+  --theme-color         : #EB0029;
+  // --theme-color       : #D3BA80;
+  // --theme-color       : #6B2AE6; 
+  --title-color         : #161921;
+  --body-color          : #525960;
+  --smoke-color         : #F5F5F5;
+  --smoke-color2        : #F7F7F7;
+  --black-color         : #000000;
+  --black-color-2       : #6A7178;
+  --black-color-3       : #242936;
+  --dark-color          : #101010;
+  --gray-color          : #D4D4D4;
+  --white-color         : #ffffff;
+  --light-color         : #72849B;
+  --yellow-color        : #FFB539;
+  --success-color       : #28a745;
+  --error-color         : #dc3545;
+  --border-color        : #E0E0E0;
+  --title-font          : 'Poppins', sans-serif;
+  --body-font           : 'Poppins', sans-serif;
+  --style-font          : 'Norican', cursive;
+  --icon-font           : "Font Awesome 6 Pro";
+  --main-container      : 1220px;
+  --container-gutters   : 24px;
+  --section-space       : 120px;
+  --section-space-mobile: 80px;
+  --section-title-space : 60px;  
+  --ripple-ani-duration : 5s;
+}
+
+// Color Variation
+$theme-color          : var(--theme-color);
+$theme-color-2        : var(--theme-color);
+$theme-color-3        : var(--theme-color);
+$title-color          : var(--title-color);
+$body-color           : var(--body-color);
+$smoke-color          : var(--smoke-color);
+$smoke-color2         : var(--smoke-color2);
+$white-color          : var(--white-color);
+$light-color          : var(--light-color);
+$black-color          : var(--black-color);
+$black-color-2        : var(--black-color-2);
+$black-color-3        : var(--black-color-3);
+$dark-color           : var(--dark-color); 
+$gray-color           : var(--gray-color);
+$yellow-color         : var(--yellow-color);
+$success-color        : var(--success-color);
+$error-color          : var(--error-color);
+$border-color         : var(--border-color);
+
+// Font Variation
+$icon-font   : var(--icon-font);
+
+// Typography
+$title-font      : var(--title-font);
+$body-font       : var(--body-font);
+$style-font      : var(--style-font);
+$body-font-size  : 16px;
+$body-line-Height: 26px;
+$body-font-weight: 400;
+$p-line-Height   : 1.75;
+
+// Device Variation
+$hd: 1921px; // Large Device Than 1920
+$xxl: 1500px; // Extra large Device
+$ml: 1399px; // Medium Large Device
+$xl: 1299px; // Medium Large Device
+$lg: 1199px; // Large Device (Laptop)
+$md: 991px; // Medium Device (Tablet)
+$sm: 767px; // Small Device
+$xs: 575px; // Extra Small Device
+$vxs: 375px; // Extra Small Device
+
+// Spacing Count with 5x
+$space-count: 10;
+
+// Section Space  For large Device
+$space         : var(--section-space);
+$space-extra   : calc(var(--section-space) - 30px);
+$space-extra2   : calc(var(--section-space) - 40px);
+
+// Section Space On small Device
+$space-mobile         : var(--section-space-mobile);
+$space-mobile-extra: calc(var(--section-space-mobile) - 30px);
+
+
+// BG Color Mapping 
+$bgcolorMap  : ();
+$bgcolorMap  : map-merge((
+  "theme"    : $theme-color,
+  "smoke"    : $smoke-color,
+  "smoke2"   : $smoke-color2,
+  "white"    : $white-color,
+  "black"    : $black-color,
+  "black-2"  : $black-color-2,
+  "dark"     : $dark-color,
+  "title"    : $title-color,
+), $bgcolorMap);
+
+
+// Overlay Color Mapping 
+$overlaycolorMap : ();
+$overlaycolorMap : map-merge((
+  "theme"        : $theme-color,
+  "title"        : $title-color,
+  "white"        : $white-color,
+  "black"        : $black-color,
+  "overlay1"     : #131B23,
+), $overlaycolorMap);
+
+
+// Text Color Mapping 
+$textColorsMap : ();
+$textColorsMap : map-merge((
+  "theme"      : $theme-color,
+  "title"      : $title-color,
+  "body"       : $body-color,
+  "white"      : $white-color,
+  "light"      : $light-color,
+  "yellow"     : $yellow-color,
+  "success"    : $success-color,
+  "error"      : $error-color), 
+$textColorsMap);
+
+
+// Font Mapping 
+$fontsMap    : ();
+$fontsMap    : map-merge((
+  "icon"     : $icon-font,
+  "title"    : $title-font,
+  "body"     : $body-font,
+  "style"    : $style-font, 
+), $fontsMap);

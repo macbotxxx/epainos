@@ -1,0 +1,438 @@
+{% load static humanize %}
+{% load crispy_forms_tags %}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Epainos</title>
+    <meta name="author" content="Themeholy">
+    <meta name="description" content="Epainos ">
+    <meta name="keywords" content="Epainos ">
+    <meta name="robots" content="INDEX,FOLLOW">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Add these in the <head> section -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Favicons - Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/img/favicons/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/img/favicons/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/img/favicons/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/favicons/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/img/favicons/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/img/favicons/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/img/favicons/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/img/favicons/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'assets/img/favicons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/img/favicons/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/img/favicons/manifest.js' %}on' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--==============================
+	  Google Fonts
+	============================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Norican&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!--==============================
+	    All CSS File
+	============================== -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <!-- Fontawesome Icon -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.min.css' %}">
+    <!-- Slick Slider -->
+    <link rel="stylesheet" href="{% static 'assets/css/slick.min.css' %}">
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+</head>
+
+<body class="theme-blue">
+
+
+    <!--[if lte IE 9]>
+    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+
+
+    <!--********************************
+   		Code Start From Here 
+	******************************** -->
+
+
+
+
+    <!--==============================
+     Preloader
+  ==============================-->
+  <div class="preloader ">
+    <div class="preloader-inner">
+<img src="{% static 'assets/img/logo1.png' %}" alt="Epainos">
+<span class="loader style3"></span>
+</div>
+</div>
+    
+    <!--==============================
+    Mobile Menu
+  ============================== -->
+    <div class="th-menu-wrapper">
+        <div class="th-menu-area style3 text-center">
+            <button class="th-menu-toggle style3"><i class="fal fa-times"></i></button>
+            <div class="mobile-logo">
+                <a href="/"><img src="{% static 'assets/img/logo1.png' %}" alt="Danza"></a>
+            </div>
+            <div class="th-mobile-menu">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                   
+                    <li><a href="#about-sec">About</a></li>
+                    <li><a href="{% url 'home_contestant_list' %}">Contestants</a></li>
+                   
+                    <li><a href="#contact-sec">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+	Header Area
+==============================-->
+    <header class="th-header header-layout3 header-absolute">
+        <div class="sticky-wrapper">
+            <!-- Main Menu Area -->
+            <div class="menu-area">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto">
+                            <div class="header-logo">
+                                <a href="/"><img src="{% static 'assets/img/logo-3.svg' %}" alt="Danza"></a>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <nav class="main-menu d-none d-lg-inline-block">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                   
+                                    <li><a href="#about-sec">About</a></li>
+                                    <li><a href="{% url 'home_contestant_list' %}">Contestants</a></li>
+                                   
+                                    <li><a href="#contact-sec">Contact Us</a></li>
+                                </ul>
+                            </nav>
+                            <button type="button" class="th-menu-toggle style3 d-inline-block d-lg-none"><i class="far fa-bars"></i></button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+ <!--==============================
+    Breadcumb
+============================== -->
+<div class="breadcumb-wrapper " data-bg-src="assets/img/breadcumb/breadcumb-bg.jpg">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">{{ contestant_qs.name | title}}</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="/">Home</a></li>
+                <li>Contestant Details</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--==============================
+Team Area  
+==============================-->
+<section class="bg-white space">
+    <div class="container">
+        <div class="about-card">
+            <div class="row">
+                
+                <div class="col-xl-6">
+                    <div id="contestantCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for img in contestant_qs.contestant_images.all %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <img src="{{ img.image.url }}" class="d-block w-100" alt="Contestant Image">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#contestantCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#contestantCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div id="contestantVideoCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for video_url in contestant_qs.contestant_videos %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <iframe width="560" height="315" src="{{video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+               
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#contestantVideoCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#contestantVideoCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <hr>
+                <div class="col-xl-6">
+                    <div class="about-card_content">
+                        <h3 class="about-card_title">{{ contestant_qs.name | title }}</h3>
+                        <span class="about-card_desig">{{ contestant_qs.stage_name | title }}</span>
+                        <p class="about-card_text">{{ contestant_qs.contestant_inspiration }}</p>
+                    </div>
+                    <div class="about-card_box">
+                        <h4 class="widget_title">Voting Form</h4>
+                        <form  method="post" id="voteForm">
+                            {% csrf_token %}
+
+                            <div class="info-box_wrapper">
+                                {{ vote_form | crispy }}  
+                            </div>
+                            <h4 class="widget_title">Total Cost: ₦<span id="resultDiv">0.00</span></h4><br>
+                            <div class="about-btn2">
+                                <button type="submit" class="th-btn style7">Submit Vote</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==============================
+Related instructor Area  
+==============================-->
+<section class="space-bottom" data-bg-src="assets/img/bg/team_bg_1.jpg">
+    <div class="container">
+        <div class="row justify-content-lg-between justify-content-center align-items-end">
+            <div class="col-xl-6 col-lg-7 col-md-9 mb-n2 mb-lg-0">
+                <div class="title-area text-center text-lg-start">
+                    <h2 class="sec-title">More Contestant</h2>
+                </div>
+            </div>
+            <div class="col-lg-auto mb-lg-0">
+                <div class="sec-btn">
+                    <div class="icon-box text-center">
+                        <button data-slick-prev="#teamSlide" class="slick-arrow default"><i class="far fa-arrow-left"></i></button>
+                        <button data-slick-next="#teamSlide" class="slick-arrow default"><i class="far fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- / Title row -->
+        <div class="row slider-shadow th-carousel" id="teamSlide" data-slide-show="4" data-lg-slide-show="3" data-md-slide-show="2" data-sm-slide-show="2" data-xs-slide-show="1" data-arrows="false">
+            {% for i in more_contestant %}
+            <!-- Single Item -->
+            <div class="col-sm-6 col-lg-4">
+                <div class="th-team team-card">
+                    <div class="team-img">
+                        {% with i.contestant_images.first as img %}
+                                    {% if img %}
+                                        <img src="{{ img.image.url }}" alt="">
+                                    {% endif %}
+                                {% endwith %}
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-title box-title"><a href="{% url 'contestant_view' i.pk %}">{{ i.name | title }}</a></h3>
+                        <span class="team-desig">{{ i.stage_name | title }}</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="{% url 'contestant_view' i.pk %}" class="btn btn-primay">Vote</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+    <!--==============================
+	Footer Area
+==============================-->
+<footer class="footer-wrapper bg-dark footer-layout3">
+    <div class="footer-area space bg-title" data-bg-src="{% static 'assets/img/bg/footer_bg_3.png' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="footer-logo mb-40 text-center">
+                        <a href="/"><img src="{% static 'assets/img/logo.png' %}" alt=" Epainos"></a>
+                    </div>
+                    <ul class="footer-menu">
+                        <li><a href="/">Home</a></li>
+                       
+                        <li><a href="#about-sec">About</a></li>
+                        <li><a href="{% url 'home_contestant_list' %}">Contestants</a></li>
+                        <li><a href="#contact-sec">Contact Us</a></li>
+                    </ul>
+                   
+                    <div class="widget footer-widget style2 mb-30">
+                        <div class="th-widget-contact style3">
+                            <div class="info-box">
+                                <div class="info-box_icon">
+                                    <i class="fa-regular fa-location-dot"></i>
+                                </div>
+                                <p class="info-box_text">
+                                    Kuto, Abeokuta. Ogun State. NG
+                                </p>
+                            </div>
+                            <div class="info-box">
+                                <div class="info-box_icon">
+                                    <i class="fa-regular fa-phone"></i>
+                                </div>
+                                <p class="info-box_text">
+                                    <a href="tel:+(163)-1202-0088" class="info-box_link">+(234)-8086-967045</a>
+                                    <a href="tel:+(163)-1202-0099" class="info-box_link">+(234)-8069-463488</a>
+                                </p>
+                            </div>
+                            <div class="info-box">
+                                <div class="info-box_icon">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <p class="info-box_text">
+                                    <a href="mailto:epainosmusic2024@gmail.com" class="info-box_link">epainosmusic2024@gmail.com</a>
+                                    <a href="mailto:info@ Epainosmusic.com.ng" class="info-box_link">info@ Epainosmusic.com.ng</a>
+                                </p>
+                            </div>
+                            <div class="info-box">
+                                <div class="info-box_icon">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+                                <p class="info-box_text">Monday to Saturday 10:00 AM - 09:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget footer-widget mb-0">
+                        <div class="th-social footer-social">
+                            <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+                            <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://google.com"><i class="fa-brands fa-google-plus-g"></i></a>
+                            <a href="https://youtube.com"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</footer>
+
+    <!--********************************
+			Code End  Here 
+	******************************** -->
+    <!-- Scroll To Top -->
+    <div class="scroll-top style3">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;">
+            </path>
+        </svg>
+    </div>
+    <!--==============================
+    All Js File
+============================== -->
+    <!-- Jquery -->
+    <script src="{% static 'assets/js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <!-- Slick Slider -->
+    <script src="{% static 'assets/js/slick.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!-- Magnific Popup -->
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Counter Up -->
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <!-- Range Slider -->
+    <script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
+    <!-- Isotope Filter -->
+    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+    <!-- Isotope pkgd -->
+    <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+    <!-- Tweenmax File -->
+    <script src="{% static 'assets/js/tweenmax.min.js' %}"></script>
+    <!-- Tweenmax File -->
+    <script src="{% static 'assets/js/nice-select.min.js' %}"></script>
+    <!-- Main Js File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+<!-- Add these before the closing </body> tag -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+<script>
+    document.getElementById('id_number_of_vote').addEventListener('input', function() {
+        // Get the input value
+        let inputValue = parseFloat(this.value);
+
+        // Check if inputValue is a number
+        if (!isNaN(inputValue)) {
+            // Multiply by 100
+            let result = inputValue * 100;
+
+            // Display the result in the div
+            document.getElementById('resultDiv').innerText = result;
+        } else {
+            // Clear the result if input is not a number
+            document.getElementById('resultDiv').innerText = '';
+        }
+    });
+
+    document.getElementById('voteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Collect form data
+            let formData = new FormData(this);
+
+            // Send form data using fetch
+            fetch('{% url "users:vote_submit" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Redirect to another page with validated inputs
+                    window.location.href = `/users/payment/?full_name=${data.full_name}&email=${data.email}&phone_number=${data.phone_number}&number_of_vote=${data.number_of_vote}&tx_ref=${data.tx_ref}`;
+                } else {
+                    alert('Form submission failed.');
+                }
+            });
+        });
+</script>
+  
+
+</body>
+
+</html>

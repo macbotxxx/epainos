@@ -1,0 +1,332 @@
+.class-schedule-area {
+    position: relative;
+    padding: 120px 200px;
+    max-width: 1620px;
+    display: block;
+    margin: 120px auto;
+    z-index: 9;
+
+    @media(max-width: 1599px) {
+        max-width: 100%;
+        padding: 120px 100px;
+    }
+
+    @media(max-width: 1599px) { 
+        padding: 120px 50px;
+    }
+    @include md{
+        padding: 50px;  
+        overflow: auto;
+        margin: 80px auto;
+    }
+    
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(22, 25, 33, 0.94);
+        z-index: -1;
+        @include md {
+            overflow: auto;
+            width: 200%; 
+        }
+        @include sm{
+            width: 300%; 
+        }
+    }
+    tbody {
+        tr{
+            // @include md{
+            //     display: grid;
+            //     grid-template-columns: repeat(2, 1fr);
+            // }
+        }
+        .schedule-day {
+            
+        }
+    
+        td,
+        th {
+            position: relative;
+            border: 1px dashed #394050;
+            padding: 11px 14px;
+        }
+    
+        .day {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 28px;
+            border: 1px dashed #394050;
+            color: $white-color;
+            text-align: center;
+            text-transform: capitalize;
+        }
+    
+        .time {
+            font-family: $body-font;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 28px;
+            color: $white-color;
+            text-align: center;
+            text-transform: uppercase;
+            max-width: 100px;
+    
+            @include xxl {
+                max-width: 80px;
+            }
+            // @include md {
+            //     display: none;
+            // }
+        }
+    
+        .schedule-title {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 28px;
+            color: $theme-color;
+            text-align: center;
+            text-transform: capitalize;
+            padding: 20px 10px;
+            position: relative;
+           
+    
+            &:before {
+                content: "";
+                position: absolute;
+                inset: 3px;
+                background-color: $white-color;
+                z-index: -1;
+            }
+        }
+    
+        .schedule-time {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 28px;
+            text-align: center;
+            text-transform: capitalize;
+            color: $body-color;
+            display: block;
+        }
+    }
+}
+.table>:not(:last-child)>:last-child>* {
+    border-bottom-color: #394050;
+}
+.class-schedule-table {
+    border: 1px dashed #394050;
+    width: 100%;
+
+    .schedule-day {
+        td {
+            position: relative;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 28px;
+            text-align: center;
+            text-transform: uppercase;
+            color: $white-color;
+            background-color: transparent;
+            border: 1px dashed #394050;
+           
+
+            &:first-child {
+                &:before {
+                    background-color: transparent;
+                }
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                inset: 3px;
+                background-color: $theme-color;
+                z-index: -1;
+            }
+        }
+    }
+
+}
+
+
+
+
+
+.class-schedule-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 30px;
+
+    @include sm {
+        display: block;
+    }
+}
+
+.tab-schedule-content {
+    position: relative;
+    z-index: 9;
+    margin-right: -70%;
+
+    @include xl {
+        margin-right: 0px;
+    }
+}
+
+.schedule-details {
+    background-color: $smoke-color;
+    border: 1px solid $gray-color;
+    border-radius: 16px;
+    min-width: 595px;
+    position: relative;
+    overflow: hidden;
+
+    @include md {
+        min-width: 500px;
+    }
+
+    @include sm {
+        min-width: 100%;
+    }
+
+    .schedule-content {
+        padding: 20px 30px;
+        background-color: $smoke-color;
+
+        &:nth-child(2) {
+            background-color: #EBEBEB;
+        }
+
+        &:nth-child(4) {
+            background-color: #EBEBEB;
+        }
+
+        &:nth-child(6) {
+            background-color: #EBEBEB;
+        }
+
+        // .author {
+        //     &:hover{
+        //         color: $theme-color-2; 
+        //     }
+        // }
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+
+        @include xs {
+            gap: 10px;
+        }
+
+        li {
+            list-style: none;
+            text-align: left;
+
+            .line-btn {
+                color: $body-color;
+                font-weight: 400;
+
+                &:before {
+                    background-color: $body-color;
+                }
+
+                &:hover {
+                    color: $theme-color-2;
+
+                    &:before {
+                        background-color: $theme-color-2;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.schedule-tabs {
+    display: inline-grid;
+    background: $smoke-color;
+    border: 1px solid $gray-color;
+    border-radius: 16px;
+    padding: 10px;
+    gap: 10px;
+    min-width: 178px;
+
+    @include sm {
+        min-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .nav-link {
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        vertical-align: middle;
+        display: inline-block;
+        border: 1px solid #D4D4D4;
+        border-radius: 10px;
+        text-align: center;
+        background-color: $white-color;
+        color: $body-color;
+        font-family: $title-font;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 26px;
+        text-transform: uppercase;
+        padding: 15px 40px;
+
+        @include xl {
+            padding: 14px 28px;
+        }
+
+        @include lg {
+            padding: 14px 37px;
+        }
+
+        @include sm {
+            padding: 14px 28px;
+        }
+
+        @include xs {
+            padding: 14px 15px;
+
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 3px;
+            background-color: $theme-color-2;
+            border: 1px solid $theme-color-2;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.2);
+            transition: all ease 0.4s;
+        }
+
+        &:hover,
+        &.active {
+            color: $white-color;
+            border: 1px solid $theme-color-2;
+
+            &::before {
+                inset: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
+            }
+        }
+    }
+}

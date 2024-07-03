@@ -1,0 +1,14 @@
+{% for url in widget.value %}
+    <input type="url" name="{{ widget.name }}" value="{{ url }}" {{ widget.attrs }} class="form-control">
+{% endfor %}
+<input type="url" name="{{ widget.name }}" {{ widget.attrs }} class="form-control"><br>
+<button type="button" class="btn btn-info" onclick="addUrlInput(this)">Add another URL</button>
+
+<script>
+    function addUrlInput(button) {
+        var input = document.createElement('input');
+        input.type = 'url';
+        input.name = button.previousElementSibling.name;
+        button.parentNode.insertBefore(input, button);
+    }
+    </script>

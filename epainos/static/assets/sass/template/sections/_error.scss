@@ -1,0 +1,47 @@
+.error-content {
+    text-align: center;
+}
+.error-img {
+    margin-bottom: 40px; 
+	text-align: center;
+	@include sm{
+		margin-bottom: 20px; 
+	}
+}
+.error-title {
+    margin-bottom: 20px;
+}
+.error-text {
+    margin-bottom: 35px;
+	max-width: 540px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@include md {
+	.error-img {
+		margin-bottom: 30px;
+	}
+	.error-title {
+		margin-bottom: 15px;
+	}
+}
+
+@include sm {
+	.error-img {
+		margin-bottom: 20px;
+	}
+	.error-title {
+		margin-bottom: 10px;
+	}
+}
+
+@include xs {
+	.error-img {
+	}
+}
+
+@include vxs {
+	.error-img {
+	}
+}

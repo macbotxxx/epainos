@@ -1,0 +1,197 @@
+/* Blog Card ---------------------------------- */
+.blog-area {
+    position: relative;
+    background-color: $smoke-color;
+    z-index: 2;
+}
+
+.blog-card {
+    background-color: $white-color;
+    box-shadow: 0px 10px 15px rgba(229, 229, 229, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 30px 0;
+
+    @include xxl {
+        margin: 0;
+    }
+
+    @include md {
+        padding: 20px;
+    }
+
+    &.style2 {
+        margin: 30px 0;
+
+        @include xxl {
+            margin: 0;
+        }
+
+        .blog-title {
+            &:hover {
+                color: $theme-color-2;
+                a{
+                    color: inherit;
+                }
+            }
+        }
+
+        .blog-meta {
+
+            span,
+            a {
+                i {
+                    margin-right: 6px;
+                    color: $theme-color-2;
+                }
+            }
+
+
+            a:hover {
+                color: $theme-color-2;
+            }
+        }
+    }
+
+    &.style3 {
+        --borderWidth: 1px;
+        background: #1D1F20;
+        position: relative;
+        border-radius: var(--borderWidth);
+        box-shadow: none;
+        border-radius: 20px;
+        margin: 30px 0;
+        transition: all 0.4s ease-in-out; 
+        &:before {
+            content: '';
+            position: absolute;
+            top: calc(-1 * var(--borderWidth));
+            left: calc(-1 * var(--borderWidth));
+            height: calc(100% + var(--borderWidth) * 2); 
+            width: calc(100% + var(--borderWidth) * 2);
+            background: linear-gradient(126.95deg, #6B2AE6 0%, #EB0029 100%); 
+            border-radius: 20px; 
+            z-index: -1;
+            animation: animatedgradient 3s ease alternate infinite; 
+            background-size: 300% 300%;
+            opacity: 0;
+            visibility: hidden;
+            
+        }
+        &:hover {
+            &:before {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        @include xxl {
+            margin: 0;
+        }
+        .blog-title {
+            a{
+                color: $white-color; 
+            }
+            &:hover {
+                a{
+                    color: $theme-color-3;
+                }
+            }
+           
+        }
+        .blog-meta {
+
+            span,
+            a {
+                i {
+                    margin-right: 6px;
+                    color: $theme-color-3;
+                }
+            }
+
+
+            a:hover {
+                color: $theme-color-3;
+            }
+        }
+    }
+
+    .blog-title {
+        text-transform: capitalize;
+        margin-bottom: 21px;
+    }
+
+    .blog-img {
+        overflow: hidden;
+        margin-bottom: 25px;
+        border-radius: 20px;
+
+        img {
+            width: 100%;
+            transition: 0.4s ease-in-out;
+        }
+    }
+
+    .blog-meta {
+        margin-bottom: 20px;
+
+        span:after,
+        a:after {
+            margin-top: -4px;
+        }
+    }
+
+    .blog-text {
+        margin-bottom: 20px;
+    }
+
+    .line-btn {
+        margin-bottom: 0;
+        display: block;
+        width: fit-content;
+    }
+
+    &:hover {
+        .blog-img {
+            img {
+                transform: scale(1.08);
+            }
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .blog-card {
+        .blog-title {
+            font-size: 20px;
+        }
+    }
+}
+
+.blog-slide2 {
+    .slick-arrow {
+        color: $theme-color-2;
+
+        &:hover {
+            background-color: $theme-color-2;
+            border-color: $theme-color-2;
+            color: $white-color;
+
+        }
+    }
+}
+
+.blog-slide3 {
+    .slick-arrow {
+        background-color: #242936;
+        border: 1px solid #242936;
+        color: $theme-color-3;
+        box-shadow: none;
+
+        &:hover {
+            background-color: $theme-color-3;
+            border-color: $theme-color-3;
+            color: $white-color;
+
+        }
+    }
+}

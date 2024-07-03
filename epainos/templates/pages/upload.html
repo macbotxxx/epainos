@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Upload Images</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
+<br>
+
+--------------------------------------
+<ol class="list-group list-group-numbered">
+    {% for i in contestant_qs %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ i.name | title  }}</div>
+        {{ i.contestant_inspiration }}
+      </div>
+      <a href="{% url 'users:contestant_view' i.id %}" class="btn btn-primary">view contestant</a>
+      <span class="badge text-bg-primary rounded-pill">{{ i.number_of_vote }}</span>
+    </li>
+    {% endfor %}
+    
+  </ol>
+{% endblock content %}
+

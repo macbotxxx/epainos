@@ -1,0 +1,61 @@
+{% extends "dashboard/base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+                <!-- content @s -->
+                <div class="nk-content nk-content-fluid">
+                    <div class="container-xl wide-xl">
+                        <div class="nk-content-body">
+                            <div class="components-preview wide-xl mx-auto">
+                                <div class="nk-block-head nk-block-head-lg wide-sm">
+                                    <div class="nk-block-head-content">
+                                        
+                                        <h2 class="nk-block-title fw-normal">{{ title }}</h2>
+                                        <div class="nk-block-des">
+                                            <p class="lead">Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="nk-block nk-block-lg">
+                                    
+                                    <div class="example-alerts">
+                                        <div class="gy-4">
+                                          
+                                            <div class="example-alert">
+                                                <div class="alert alert-pro alert-warning">
+                                                    <div class="alert-text">
+                                                        <h6>Confirm Action</h6>
+                                                        <p>{{ card_header }}</p>
+                                                        <form method="post">
+                                                            {% csrf_token %}
+                                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                                    <ul class="nk-block-tools g-3">
+                                                                        <li>
+                                                                            <button  class="dropdown-toggle btn btn-white btn-dim btn-outline-light" /><em class="icon ni ni-check-fill-c"></em><span><span class="d-md-none">Add</span><span class="d-none d-md-block">{{ button_content | title }}</span></span></>
+                                                                        </li>
+                                                                        <li class="nk-block-tools-opt"><a onclick="window.history.back()" class="btn btn-primary"><em class="icon ni ni-cross-round"></em><span>No , Go Back</span></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content @e -->
+{% endblock content %}
+
+               

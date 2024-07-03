@@ -1,0 +1,198 @@
+{% extends "dashboard/base.html" %}
+{% load static humanize %}
+
+{% block content %}
+<!-- content @s -->
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Dashboard</h3>
+                        </div><!-- .nk-block-head-content -->
+                        <div class="nk-block-head-content">
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="row g-gs">
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg6">
+                                    <div class="card-inner">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Today Contestant</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">{{ contestant_qs_count }}</div>
+                                                <div class="nk-ecwg6-ck">
+                                                    <canvas class="ecommerce-line-chart-s3" id="todayOrders"></canvas>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </div><!-- .card-inner -->
+                                </div><!-- .nk-ecwg -->
+                            </div><!-- .card -->
+                        </div><!-- .col -->
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg6">
+                                    <div class="card-inner">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Today Revenue</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">₦{{ total_amount_paid | intcomma}}</div>
+                                                <div class="nk-ecwg6-ck">
+                                                    <canvas class="ecommerce-line-chart-s3" id="todayRevenue"></canvas>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </div><!-- .card-inner -->
+                                </div><!-- .nk-ecwg -->
+                            </div><!-- .card -->
+                        </div><!-- .col -->
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg6">
+                                    <div class="card-inner">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Total Vote</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">{{ total_vote | intcomma }}</div>
+                                                <div class="nk-ecwg6-ck">
+                                                    <canvas class="ecommerce-line-chart-s3" id="todayCustomers"></canvas>
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </div><!-- .card-inner -->
+                                </div><!-- .nk-ecwg -->
+                            </div><!-- .card -->
+                        </div><!-- .col -->
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg6">
+                                    <div class="card-inner">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Total Transactions</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">{{ tranx_qs_count | intcomma }}</div>
+                                                <div class="nk-ecwg6-ck">
+                                                    <canvas class="ecommerce-line-chart-s3" id="todayVisitors"></canvas>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div><!-- .card-inner -->
+                                </div><!-- .nk-ecwg -->
+                            </div><!-- .card -->
+                        </div><!-- .col -->
+                        
+                        
+                        <div class="col-xxl-8">
+                            <div class="card card-full">
+                                <div class="card-inner">
+                                    <div class="card-title-group">
+                                        <div class="card-title">
+                                            <h6 class="title">Recent Transactions</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nk-tb-list mt-n2">
+                                    <div class="nk-tb-item nk-tb-head">
+                                        <div class="nk-tb-col"><span>Tranx Ref</span></div>
+                                        <div class="nk-tb-col tb-col-sm"><span>Voter</span></div>
+                                        <div class="nk-tb-col tb-col-md"><span>Date</span></div>
+                                        <div class="nk-tb-col"><span>Amount</span></div>
+                                        <div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div>
+                                    </div>
+                                    {% for i in tranx_qs %}
+                                    <div class="nk-tb-item">
+                                        <div class="nk-tb-col">
+                                            <span class="tb-lead"><a href="#">#{{i.payment_ref}}</a></span>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-sm">
+                                            <div class="user-card">
+                                                
+                                                <div class="user-name">
+                                                    <span class="tb-lead">{{ i.voter_name }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="nk-tb-col tb-col-md">
+                                            <span class="tb-sub">{{ i.created_date }}</span>
+                                        </div>
+                                        <div class="nk-tb-col">
+                                            <span class="tb-sub tb-amount">{{ i.amount_paid | intcomma }}<span> NGN</span></span>
+                                        </div>
+                                        <div class="nk-tb-col">
+                                            <span class="badge badge-dot badge-dot-xs bg-success">{{ i.status }}</span>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div><!-- .card -->
+                        </div>
+                        <div class="col-xxl-4 col-md-8 col-lg-6">
+                            <div class="card h-100">
+                                <div class="card-inner">
+                                    <div class="card-title-group mb-2">
+                                        <div class="card-title">
+                                            <h6 class="title">Contestant Votes</h6>
+                                        </div>
+                                        
+                                    </div>
+                                    <ul class="nk-top-products">
+                                        {% for i in contestant_qs %}
+                                        <li class="item">
+                                            <!-- <div class="thumb">
+                                                {% with i.contestant_images.all|first as img %}
+                                                    {% if img %}
+                                                        <img src="{{ img.url }}" alt="">
+                                                    {% endif %}
+                                                {% endwith %}
+                                            </div> -->
+                                            <div class="info">
+                                                <div class="title">{{ i.name | title }}</div>
+                                                <div class="price">{{ i.stage_name | title }}</div>
+                                            </div>
+                                            <div class="total">
+                                                <div class="count">{{ i.number_of_vote }} Vote</div>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div><!-- .card-inner -->
+                            </div><!-- .card -->
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content @e -->
+{% endblock content %}

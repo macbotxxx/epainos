@@ -1,0 +1,315 @@
+.sec-title {
+    margin-bottom: calc(var(--section-title-space) - 12px);
+    margin-top: -0.23em;
+}
+
+.sub-title {
+    position: relative;
+    font-family: $style-font;
+    color: $theme-color;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.2em;
+    display: inline-block;
+    text-transform: capitalize; 
+    margin-bottom: 28px;
+    @include xs {
+        letter-spacing: 0.1em;
+    }
+
+    &.sub-title2 {
+        color: $theme-color-2;
+
+        &::before {
+            background-color: $theme-color-2;
+            margin-left: -6.6rem;
+
+            @include sm {
+
+                background-color: $theme-color-2;
+                margin-left: -6.6rem;
+
+                @include xs {
+                    margin-left: -5rem;
+                }
+            }
+        }
+
+        &::after {
+            background-color: $theme-color-2;
+            margin-left: 1.4rem;
+        }
+
+    }
+    
+    &.sub-title3 {
+        color: $theme-color-3;
+
+        &::before {
+            background-color: $theme-color-3;
+            margin-left: -6.6rem;
+
+            @include sm {
+
+                background-color: $theme-color-3;
+                margin-left: -6.6rem;
+
+                @include xs {
+                    margin-left: -5rem;
+                }
+            }
+        }
+
+        &::after {
+            background-color: $theme-color-3;
+            margin-left: 1.4rem;
+        }
+
+    }
+
+    &.style1 {
+        &::before {
+            display: none;
+            margin-left: -6.6rem; 
+
+            @include xs {
+                margin-left: -4.5rem;
+            }
+
+            @include sm {
+                display: block; 
+                background-color: $theme-color;
+            }
+            @include vxs { 
+                display: none; 
+            }
+        }
+    }
+
+    &.style2 {
+        color: $theme-color-2;
+
+        &::before {
+            background-color: transparent;
+            margin-left: -6.6rem;
+
+            @include xs {
+                margin-left: -4.5rem;
+            }
+
+            @include sm {
+                background-color: $theme-color-2;
+            }
+        }
+
+        &::after {
+            background-color: $theme-color-2;
+            margin-left: 1.4rem;
+        }
+    }
+    &.style3 {
+        color: $theme-color-3;
+        &::before,
+        &::after {
+            height: 1px;
+            width: 60px;
+        }
+
+        &::before {
+            background-color: transparent;
+            margin-left: -6.6rem;
+
+            @include xs {
+                margin-left: -4.5rem;
+            }
+
+            @include sm {
+                background-color: $theme-color-3;
+            }
+        }
+
+        &::after {
+            background-color: $theme-color-3;
+            margin-left: 1.4rem;
+        }
+    }
+
+    @include xs {
+        font-size: 16px;
+        line-height: 26px;
+        margin-bottom: 10px;
+    }
+
+    &::before,
+    &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        height: 2px;
+        width: 80px;
+
+        @include xs {
+            width: 50px;
+        }
+
+        @media(max-width:450px) {
+            display: none;
+        }
+    }
+
+    &::before {
+        background-color: $theme-color;
+        margin-left: -6.6rem;
+
+        @include sm {
+
+            background-color: $theme-color;
+            margin-left: -6.6rem;
+
+            @include xs {
+                margin-left: -5rem;
+            }
+        }
+    }
+
+    &::after {
+        background-color: $theme-color;
+        margin-left: 1.4rem;
+    }
+
+    &.line-border {
+        letter-spacing: 0;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+
+    }
+}
+
+
+.box-title {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    margin-top: -0.34em;
+
+    a {
+        color: inherit;
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+}
+
+.sec-text {
+    max-width: 720px;
+}
+
+.title-area {
+    margin-bottom: calc(var(--section-title-space) - 12px);
+    position: relative;
+    z-index: 2;
+
+    @include sm {
+        text-align: center; 
+    }
+
+    .sec-title {
+        text-transform: capitalize;
+        margin-bottom: 15px;
+    }
+
+    // &.mb-0 {
+    //     .sec-title {
+    //         margin-bottom: -0.41em;
+    //     }
+    // }
+
+    .th-btn {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+.sec-desc {
+    @include sm {
+        text-align: center;
+    }
+}
+
+hr.title-line {
+    margin-top: 0;
+    background-color: $border-color;
+    opacity: 1;
+}
+
+.sec-btn,
+.title-line {
+    margin-bottom: var(--section-title-space);
+    @include md{
+        text-align: center;
+    }
+}
+
+@include lg {
+    .sub-title {
+        margin-bottom: 20px;
+    }
+
+    .shadow-title {
+        font-size: 120px;
+        margin-bottom: -82px;
+    }
+
+    .title-area,
+    .sec-title {
+        --section-title-space: 60px;
+
+        &.mb-45 {
+            margin-bottom: 36px;
+        }
+
+        &.mb-50 {
+            margin-bottom: 40px;
+        }
+    }
+
+    .sec-btn,
+    .title-line {
+        --section-title-space: 55px;
+    }
+}
+
+@include md {
+    .shadow-title {
+        font-size: 100px;
+    }
+
+    .title-area,
+    .sec-title {
+        --section-title-space: 50px;
+
+        &.mb-45 {
+            margin-bottom: 35px;
+        }
+    }
+
+    .sec-btn,
+    .title-line {
+        --section-title-space: 50px;
+    }
+}
+
+@include xs {
+    .sub-title {
+        font-size: 22px;
+        margin-bottom: 22px;
+
+        img {
+            max-width: 60px;
+        }
+    }
+}

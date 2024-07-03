@@ -1,0 +1,394 @@
+.footer-widget {
+    margin-bottom: 50px;
+
+    &,
+    .widget {
+        padding: 0;
+        border: none;
+        padding-bottom: 0;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    input,
+    select {
+        height: 55px;
+        background: $white-color;
+        border-radius: 10px;
+        color: #525960;
+        border: 1px solid $white-color;
+
+        &:focus {
+            border-color: $white-color;
+            background-color: $white-color;
+        }
+    }
+
+    .form-group {
+        >i {
+            color: $theme-color;
+            top: 18px;
+        }
+    }
+
+    .widget_title {
+        max-width: 270px;
+        color: $white-color;
+        border-bottom: none;
+        margin: -0.12em 0 32px 0;
+        padding-bottom: 25px;
+        text-transform: uppercase;
+
+        &:after {
+            content: '';
+            height: 2px;
+            width: 79px;
+            background: linear-gradient(90deg, #EB0029 0%, #6B2AE6 100%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        &:before {
+            display: none;
+        }
+    }
+
+    &.widget_meta,
+    &.widget_pages,
+    &.widget_archive,
+    &.widget_categories,
+    &.widget_nav_menu {
+        ul {
+            margin-top: -5px;
+        }
+
+        .menu,
+        >ul {
+            margin-bottom: -5px;
+        }
+
+        a {
+            font-size: 16px;
+            font-weight: 400;
+            padding: 0 0 0 20px;
+            margin-bottom: 21px;
+            font-family: $body-font;
+            color: $gray-color;
+            display: block;
+            max-width: 100%;
+            width: max-content;
+            padding-right: 0;
+            background-color: transparent;
+            border-bottom: none;
+            position: relative;
+
+            &:before {
+                content: "\f061";
+                position: absolute;
+                font-weight: 600;
+                left: 0;
+                top: 2px;
+                transform: translateY(0);
+                font-size: 0.9em;
+                font-family: 'Font Awesome 6 Pro';
+                background-color: transparent;
+                border: none;
+                color: inherit;
+            }
+
+            &:hover {
+                background-color: transparent;
+                color: $theme-color;
+
+                &:before {
+                    color: $theme-color;
+                }
+            }
+        }
+
+        li {
+            >span {
+                @include equal-size(auto);
+                position: relative;
+                background-color: transparent;
+                color: $body-color;
+                line-height: 1;
+            }
+
+            &:last-child {
+                a {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .recent-post {
+        max-width: 300px;
+        margin-top: -0.3em;
+        margin-bottom: 28px;
+
+        .post-title {
+            color: $white-color;
+            font-weight: 500;
+            &:hover {
+                color: $theme-color-2;
+                a{
+                    color: inherit; 
+                }
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        .recent-post-meta {
+            a {
+                font-weight: 400;
+                line-height: 1.2;
+                &:hover {
+                    color: $theme-color-2;
+                }
+            }
+
+
+
+            a:hover {
+                i {
+                    color: $theme-color-2;
+                    
+                }
+            }
+        }
+    }
+
+    &.style2 {
+        .about-text {
+            color: #6A7178;
+        }
+
+        .office-hour {
+            .desc {
+                color: #6A7178;
+            }
+        }
+
+        .th-social {
+            a {
+                color: #6A7178;
+            }
+        }
+
+        &.widget_meta a,
+        &.widget_pages a,
+        &.widget_archive a,
+        &.widget_categories a,
+        &.widget_nav_menu a {
+            color: #6A7178;
+            &:hover{
+                color: $theme-color;
+            }
+        }
+
+        .info-box {
+            &_icon {
+                background: rgba(255, 255, 255, 0.15);
+                border-radius: 6px;
+                color: $white-color;
+            }
+
+            &_text {
+                color: #6A7178;
+                
+            }
+
+            &_link {
+                color: #6A7178;
+                &:hover{
+                    color: $theme-color-3;
+                }
+            }
+        }
+    }
+}
+
+.th-widget-about {
+    .about-logo {
+        margin-bottom: 33px;
+    }
+
+    .about-text {
+        margin-bottom: 25px;
+        margin-top: -0.5em;
+        color: $gray-color;
+    }
+}
+
+.footer-text {
+    margin-top: -0.46em;
+    margin-bottom: 25px;
+    color: $gray-color;
+    text-transform: capitalize;
+}
+
+.social-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .social-title {
+        font-size: 20px;
+        color: $white-color;
+        font-weight: 600;
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+}
+
+.icon-group {
+    a {
+        color: $white-color;
+        font-size: 18px;
+        margin-right: 17px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.newsletter-widget {
+    max-width: 290px;
+}
+
+.newsletter-form {
+    position: relative;
+    max-width: 465px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .form-control {
+        background-color: $white-color;
+        border: 1px solid $border-color;
+
+        &.style2 {
+            background-color: #2C3240;
+            border: 1px solid #2C3240;
+            border-radius: 10px;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+                border: 1px solid $theme-color-2;
+                background-color: transparent;
+            }
+        }
+        &.style3 {
+            background-color: #2C3240;
+            border: 1px solid #2C3240;
+            border-radius: 10px;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+                border: 1px solid $theme-color;
+                background-color: transparent;
+            }
+        }
+    }
+
+    .th-btn {
+        min-width: 136px;
+        padding: 15px 30px;
+    }
+}
+
+.sidebar-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 287px;
+
+    .gallery-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: $white-color;
+        visibility: hidden;
+        opacity: 0;
+        transform: translate(-50%, 20px);
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+
+    .gallery-thumb {
+        overflow: hidden;
+        position: relative;
+
+        &:before {
+            content: '';
+            height: calc(100% - 14px);
+            width: calc(100% - 14px);
+            background-color: $title-color;
+            opacity: 0.8;
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            border: 1px solid $white-color;
+            transform: scaleX(0);
+            transition: 0.4s ease-in-out;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        &:hover {
+            &:before {
+                transform: scaleX(1);
+            }
+
+            .gallery-btn {
+                visibility: visible;
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+
+@include lg {
+    .footer-widget {
+
+        &.widget_meta,
+        &.widget_pages,
+        &.widget_archive,
+        &.widget_categories,
+        &.widget_nav_menu {
+            a {
+                margin-bottom: 16px;
+            }
+
+        }
+    }
+}
+
+@include sm {
+    .footer-widget {
+        .widget_title {
+            margin-bottom: 35px;
+        }
+    }
+
+    .th-widget-about .about-text {
+        margin-bottom: 20px;
+        ;
+    }
+
+    .social-box.mb-30 {
+        margin-bottom: 25px;
+    }
+}

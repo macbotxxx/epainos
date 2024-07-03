@@ -1,0 +1,159 @@
+/* Tab Menu 1 ---------------------------------- */
+.technic-tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+
+    @include lg {
+        justify-content: flex-start;
+        gap: 30px;
+    }
+
+    @include sm {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    &.nav-tabs {
+        border-bottom: 1px solid transparent;
+
+        @include xs {
+            flex-wrap: nowrap;
+        }
+
+        @media(max-width:420px) {
+            flex-wrap: nowrap;
+        }
+    }
+
+    .nav-link {
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        vertical-align: middle;
+        display: inline-block;
+        border: 1px solid #D4D4D4;
+        border-radius: 10px;
+        text-align: center;
+        background-color: transparent;
+        color: #525960;
+        font-family: $title-font;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 26px;
+        text-transform: uppercase;
+        padding: 14px 37px;
+
+        @include xl {
+            padding: 14px 28px;
+        }
+
+        @include lg {
+            padding: 14px 37px;
+        }
+
+        @include sm {
+            padding: 14px 28px;
+        }
+
+        @include xs {
+            padding: 14px 15px;
+
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 3px;
+            background-color: $theme-color;
+            border: 1px solid $theme-color;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.2);
+            transition: all ease 0.4s;
+        }
+
+        &:hover,
+        &.active {
+            color: $white-color;
+            border: 1px solid $theme-color;
+
+            &::before {
+                inset: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
+            }
+        }
+    }
+}
+
+.technic-desc {
+    margin-bottom: 9px;
+    @include sm{
+        text-align: center;
+    }
+}
+
+.technic-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 80px;
+
+    @include lg {
+        justify-content: flex-start;
+        gap: 40px;
+        margin-right: 0;
+    }
+    @include sm {
+        justify-content: center; 
+        gap: 20px;
+    }
+
+    @media(max-width: 400px) {
+        display: block;
+    }
+}
+
+.technic-icon-list {
+    ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: $title-font;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
+            color: $title-color;
+            margin-top: 20px;
+
+            i {
+                font-weight: 300;
+                font-size: 26px;
+                line-height: 26px;
+                color: #EB0029;
+            }
+        }
+    }
+}
+
+@include lg {
+    .filter-menu.tab-menu1 {
+        gap: 10px 30px;
+    }
+}
+
+@include sm {
+    .filter-menu.tab-menu1 {
+        gap: 10px 20px;
+    }
+}

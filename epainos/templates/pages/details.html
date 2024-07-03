@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://media.newyorker.com/photos/62c4511e47222e61f46c2daa/master/w_1920,c_limit/shouts-animals-watch-baby-hemingway.jpg" class="d-block w-100" alt="https://media.newyorker.com/photos/62c4511e47222e61f46c2daa/master/w_1920,c_limit/shouts-animals-watch-baby-hemingway.jpg">
+      </div>
+      <div class="carousel-item">
+        <img src="https://media.newyorker.com/photos/665f80dec473111d1220ed95/master/w_1920,c_limit/Shouts-%20Millennial-Lament.jpg" class="d-block w-100" alt="https://media.newyorker.com/photos/665f80dec473111d1220ed95/master/w_1920,c_limit/Shouts-%20Millennial-Lament.jpg">
+      </div>
+      <div class="carousel-item">
+        <img src="https://media.wired.com/photos/6610648a166b9261242e3e90/master/w_1920,c_limit/Django.jpg" class="d-block w-100" alt="https://media.wired.com/photos/6610648a166b9261242e3e90/master/w_1920,c_limit/Django.jpg">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <p><b>Name</b> {{ contestant_qs.name | title }}</p>
+  <p><b>Stage Name</b> {{ contestant_qs.stage_name | title }}</p>
+  <p><b>Contestant ID</b> {{ contestant_qs.contestant_id }}</p>
+
+ <h3 id="resultDiv">Total Amount</h3>
+
+  <form  method="post" id="voteForm">
+    {% csrf_token %}
+  <div class="mb-3">
+    {{ vote_form.as_p }}
+    
+    <button type="submit" class="btn btn-primary">submit vote</button>
+  </div>
+</form>
+
+
+<script>
+    document.getElementById('id_number_of_vote').addEventListener('input', function() {
+        // Get the input value
+        let inputValue = parseFloat(this.value);
+
+        // Check if inputValue is a number
+        if (!isNaN(inputValue)) {
+            // Multiply by 100
+            let result = inputValue * 100;
+
+            // Display the result in the div
+            document.getElementById('resultDiv').innerText = result;
+        } else {
+            // Clear the result if input is not a number
+            document.getElementById('resultDiv').innerText = '';
+        }
+    });
+
+    document.getElementById('voteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Collect form data
+            let formData = new FormData(this);
+
+            // Send form data using fetch
+            fetch('{% url "users:vote_submit" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Redirect to another page with validated inputs
+                    window.location.href = `/users/payment/?full_name=${data.full_name}&email=${data.email}&phone_number=${data.phone_number}&number_of_vote=${data.number_of_vote}&tx_ref=${data.tx_ref}`;
+                } else {
+                    alert('Form submission failed.');
+                }
+            });
+        });
+</script>
+  
+{% endblock content %}
+

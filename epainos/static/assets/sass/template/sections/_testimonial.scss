@@ -1,0 +1,790 @@
+/* Testimonial 1 ---------------------------------- */
+.testimonial-area {
+    position: relative;
+    background-size: contain;
+    background-position: center center;
+
+    @include md {
+        min-height: 950px;
+    }
+}
+
+.testimonial-sec {
+    .slick-arrow {
+        --pos-x: 40px;
+        top: 44%;
+        background-color: $white-color;
+        border: none;
+        color: $theme-color;
+        width: var(--btn-size, 56px);
+        height: var(--btn-size, 56px);
+        line-height: var(--btn-size, 56px);
+        font-size: var(--btn-font-size, 24px);
+        box-shadow: 0px 10px 15px rgba(229, 229, 229, 0.3);
+        border-radius: 10px;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+
+        &:hover {
+            background-color: $theme-color;
+            color: $white-color;
+        }
+
+        &.slick-prev {
+            top: -10%;
+            left: auto;
+            right: 90px;
+        }
+
+        &.slick-next {
+            top: -10%;
+            left: auto;
+            right: 10px;
+        }
+
+    }
+}
+
+.testi-box {
+    &-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        gap: 30px;
+    }
+
+    &-area {
+        // display: grid;
+        // grid-template-columns: repeat(2, 1fr); 
+        // gap: 30px;
+        max-width: 1220px;
+    }
+
+    &-slide {
+        flex: 1;
+        width: 100%;
+        max-width: 803px;
+        position: relative;
+
+        .icon-box {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            left: auto;
+
+            @include xl {
+                display: none;
+            }
+
+            .slick-arrow {
+                box-shadow: 0px 10px 15px rgba(229, 229, 229, 0.3);
+                color: $theme-color;
+
+                &:hover {
+                    background-color: $theme-color;
+                    color: $white-color;
+                    border-color: $theme-color;
+                }
+            }
+        }
+
+    }
+
+
+
+    &_quote {
+        margin-bottom: 0px;
+
+        @include md {
+            img {
+                width: 80%;
+            }
+        }
+    }
+
+    &_profile {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &_avater {
+        border-radius: 99px;
+        overflow: hidden;
+    }
+
+    &_name {
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 34px;
+        color: $white-color;
+        text-transform: capitalize;
+        margin-bottom: 9px;
+
+        @include md {
+            font-size: 25px;
+        }
+
+        @include vxs {
+            font-size: 20px;
+        }
+    }
+
+    &_desig {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: $theme-color;
+        text-transform: capitalize;
+        margin-bottom: 0;
+        display: block;
+    }
+
+    &_text {
+        font-style: italic;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 40px;
+        text-transform: capitalize;
+        color: $gray-color;
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 1px solid $body-color;
+
+        @include xl {
+            font-size: 20px;
+            line-height: 36px;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        @include vxs {
+            font-size: 16px;
+            line-height: 30px;
+        }
+    }
+
+    &_review {
+        color: $yellow-color;
+
+        i {
+            margin-right: 3px;
+        }
+    }
+}
+
+@include xl {
+    .testi-box-slide {
+        max-width: 650px;
+    }
+}
+
+@include lg {
+    .testi-box-slide {
+        max-width: 100%;
+    }
+
+    .testi-box-area {
+        gap: 40px;
+    }
+}
+
+@include md {
+    .testi-box {
+        &-area {
+            display: block;
+        }
+
+        &-slide {
+            max-width: 100%;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .testi-box {
+        &-slide {
+            max-width: 100%;
+
+            .icon-box {
+                display: none;
+            }
+        }
+
+        &-img {
+            min-width: auto;
+            max-width: 100%;
+        }
+    }
+}
+
+.testimonial-box-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    gap: 140px;
+
+    @include lg {
+        gap: 10px;
+    }
+
+    @media(max-width: 1024px) {
+        display: block;
+
+        .title-area {
+            text-align: center;
+        }
+    }
+
+
+    .slick-arrow {
+        box-shadow: 0px 10px 15px rgba(229, 229, 229, 0.3);
+        color: $theme-color;
+
+        @include xl {
+            display: none !important;
+        }
+
+        &:hover {
+            background-color: $theme-color;
+            color: $white-color;
+            border-color: $theme-color; 
+        }
+    }
+} 
+.testi-box2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+
+    @media(max-width: 1024px) {
+        display: block;
+    }
+
+    .testi-box {
+        &_avater {
+            display: inline-block;
+            -webkit-box-flex: 0;
+            -webkit-flex: none;
+            -ms-flex: none;
+            flex: none;
+            margin-right: 30px;
+            border-radius: 20px;
+
+            @media(max-width: 1024px) {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+
+        &_img {
+            min-width: 387px;
+
+            @include xs {
+                min-width: 100%;
+            }
+
+            @media(max-width: 1024px) {
+                display: block;
+                margin: 0 auto;
+            }
+
+            img {
+                width: 387px;
+                border-radius: 20px;
+
+                @media(max-width: 1024px) {
+                    display: block;
+                    margin: 0 auto;
+                }
+
+                @include xs {
+                    min-width: 100%;
+                }
+            }
+        }
+    } 
+}
+
+
+/* Testimonial 2 ---------------------------------- */
+.testimonial-area-two {
+    position: relative;
+    border-radius: 20px;
+    margin: 0 230px;
+    z-index: 9;
+    overflow: hidden;
+    padding-bottom: 115px;
+
+    @media(max-width:1800px) {
+        margin: 0;
+        border-radius: 0px;
+    }
+
+    @include md {
+        padding-bottom: 80px;
+
+        .container {
+            max-width: 940px;
+        }
+    }
+
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $title-color;
+        border-radius: 20px;
+        opacity: 0.92;
+        z-index: -1;
+
+        @media(max-width:1800px) {
+            border-radius: 0px;
+        }
+    }
+}
+
+.testi-card {
+    position: relative;
+    background-color: $white-color;
+    box-shadow: 0px 10px 15px rgba(229, 229, 229, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px 15px;
+
+    @include xxl {
+        margin: 0 15px;
+    }
+
+    @include md {
+        padding: 20px; 
+    }
+
+    @include xs {
+        padding: 30px;
+    }
+
+    &_img {
+        flex-basis: 240px;
+        min-width: 240px;
+
+        @include md {
+            flex-basis: 100px;
+            min-width: 100px; 
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &_wrapper {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+    }
+
+    &_profile {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        @include md {
+            gap: 10px;
+        }
+        @include vxs {
+            gap: 10px;
+        }
+    }
+
+    &_quote { 
+        img{
+            @include md {
+                width: 50%; 
+                display: block;
+                margin: 0 auto; 
+            }
+        }
+    }
+
+    &_content {
+        text-align: center;
+        padding: 30px;
+    }
+
+    &_avater {
+
+        img {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+
+            @include md {
+                width: 50px;
+                height: 50px;
+                border-radius: 10px;
+            } 
+        }
+    }
+
+    &_name {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 34px;
+        text-transform: capitalize;
+        color: $title-color;
+        margin-bottom: 4px;
+        transition: all 0.4s ease-in-out;
+        @include md {
+            font-size: 18px; 
+            line-height: 24px; 
+            margin-bottom: 0; 
+        }
+
+        a {
+            color: inherit;
+        }
+
+        &:hover {
+            color: $theme-color;
+        }
+
+        @include xs {
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        @include vxs {
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+    }
+
+    &_desig {
+        display: block;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        text-transform: capitalize;
+        color: #525960;
+        margin-bottom: 0;
+    }
+
+    &_text {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 26px;
+        text-transform: capitalize;
+        font-style: italic;
+        color: #525960;
+        margin-bottom: 29px;
+        line-height: 1.6;
+
+        @include vxs {
+            font-size: 12px;
+            line-height: 20px;
+        }
+    }
+}
+
+/*  testimonial slider ----------------------------------------*/
+.testi-grid-tab {
+    max-width: 460px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+
+    @include xxl {
+        margin: 20px auto;
+    }
+
+    @include sm {
+        max-width: 300px;
+    }
+
+
+}
+
+.testi-grid-slide {
+    position: relative;
+    margin-top: 30px;
+
+    @include xxl {
+        margin: 0;
+    }
+
+    .slick-arrow {
+        top: 16%;
+        background-color: #242936;
+        border-radius: 10px;
+        color: var(--white-color);
+        border: 1px solid #242936;
+        box-shadow: none;
+        font-size: var(--icon-font-size, 22px);
+
+        @media(max-width:1399px) {
+            display: none !important;
+        }
+
+        &:hover {
+            background-color: $theme-color-2;
+            border-color: $theme-color-2;
+            color: $white-color;
+        }
+    }
+} 
+
+.testi-grid {
+    padding: 0 60px;
+    text-align: center;
+
+    @include sm {
+        padding: 0;
+    }
+
+    &-area {
+        position: relative;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &_text {
+        font-style: italic;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 40px;
+        text-align: center;
+        text-transform: capitalize;
+        color: #6A7178;
+
+        @include lg {
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        @include sm {
+            font-size: 16px;
+            line-height: 20px;
+        }
+    }
+
+    &_name {
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 34px;
+        text-align: center;
+        text-transform: capitalize;
+        color: $white-color;
+        margin-bottom: 9px;
+
+        @include lg {
+            font-size: 24px;
+            line-height: 26px;
+            margin-bottom: 3px;
+        }
+    }
+
+    &_desig {
+        font-weight: 400;
+        font-size: 14px;
+        text-transform: capitalize; 
+        color: $theme-color-3;
+        text-align: center; 
+    }
+}
+
+.testi-quote { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+
+    img {
+        position: absolute;
+        bottom: 14%;
+        z-index: -1;
+    }
+}
+.tab-slide {
+    .slick-cloned {
+        .slide-img {
+            transform: scale(0.6);
+            opacity: 0;
+        }
+    }
+
+    .slide-img {
+        transform: scale(0.8);
+        transition: all 0.4s ease-in-out;
+        margin: 0 -25px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+
+        @include sm {
+            max-width: 96px;
+            margin: 0 -16px;
+        }
+    }
+
+    img {
+        border-radius: 50%; 
+        width: 100%;
+        height: 100%;
+    }
+    .slick-active {
+        .slide-img {
+            transform: scale(0.65);
+            opacity: 1;
+        }
+
+        +.slick-slide {
+            .slide-img {
+                transform: scale(0.8);
+                filter: grayscale(100);
+
+                img {
+                    z-index: 3;
+                }
+            }
+        }
+    }
+
+    .slick-current {
+        +.slick-slide {
+            .slide-img {
+                z-index: 3;
+            }
+
+            +.slick-slide {
+                .slide-img {
+                    z-index: 2;
+                    transform: scale(0.65);
+                }
+            }
+        }
+
+        &.slick-current {
+            .slide-img {
+                transform: scale(1);
+                filter: none;
+                z-index: 4;
+            }
+        }
+    }
+
+}
+
+
+.testiSlider {
+    max-width: 410px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+
+    .slick-arrow {
+        color: $theme-color-2;
+
+        @media(max-width:1399px) {
+            display: none !important;
+        }
+
+        &:hover {
+            background-color: $theme-color-2;
+            border-color: $theme-color-2;
+            color: $white-color;
+        }
+    }
+
+
+    .slick-current { 
+        &.slick-active {
+            .testi-item {
+                &_img {}
+            }
+        }
+    }
+}
+
+/*  testimonial slider ----------------------------------------*/
+.testiSlider {
+    max-width: 410px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+
+    .slick-arrow {
+        color: $theme-color-2;
+
+        @media(max-width:1399px) {
+            display: none !important;
+        }
+
+        &:hover {
+            background-color: $theme-color-2;
+            border-color: $theme-color-2;
+            color: $white-color;
+        }
+    }
+
+
+    .slick-current {
+        &.slick-active {
+            .testi-item {
+                &_img {}
+            }
+        }
+    }
+}
+
+/* Testimonial Item --------------------------------*/
+.testimonial-area-three {
+    position: relative;
+    background-size: auto;
+    background-position: bottom center;
+    z-index: 9;
+}
+
+@include sm {
+    .testi-card {
+        flex-direction: column;
+
+        &_img {
+            min-width: 100%;
+            max-height: 220px;
+        }
+
+        &_quote {
+            left: 50%;
+            top: 220px;
+
+            img {
+                width: 50px;
+
+                @include xs {
+                    width: 30px;
+                }
+
+                @include vxs {
+                    width: 25px;
+                }
+            }
+        }
+    }
+}
+
+@include vxs {
+    .testi-card {
+        &_content {
+            padding: 30px 12px;
+        }
+    }
+}

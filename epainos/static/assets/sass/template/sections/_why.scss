@@ -1,0 +1,248 @@
+/* Why 1 ---------------------------------- */
+.video-box1,
+.video-box2 {
+    position: relative;
+
+    img {
+        width: 100%;
+        min-height: 300px;
+        object-fit: cover;
+    }
+
+    .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &.border-btn {
+
+            &:before,
+            &:after {
+                border: 2px solid $gray-color;
+                animation: ripple 2s linear infinite;
+            }
+
+            i {
+                display: inline-block;
+                width: var(--icon-size, 120px);
+                height: var(--icon-size, 120px);
+                line-height: var(--icon-size, 120px);
+                text-align: center;
+                background-color: transparent;
+                color: $gray-color;
+                font-size: var(--icon-font-size, 26px);
+                border-radius: 50%;
+                font-weight: 300;
+                z-index: 1;
+                transition: all ease 0.4s;
+
+                @include xl {
+                    width: var(--icon-size, 80px);
+                    height: var(--icon-size, 80px);
+                    line-height: var(--icon-size, 80px);
+                }
+            }
+
+            &:after,
+            &:before {
+                display: none;
+            }
+        }
+
+    }
+}
+
+.video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0;
+    width: 80px;
+    height: 80px;
+    line-height: 82px;
+    transition: all 1s cubic-bezier(0, 0, 0.2, 1);
+    border-radius: 50%;
+    background: transparent;
+    margin: 0 auto;
+    display: inline-block;
+    font-size: 24px;
+    text-align: center;
+    color: $white-color;
+    @include sm{
+        width: 50px;
+        height: 50px;
+        line-height: 52px;
+        font-size: 20px;
+    }
+
+    i {
+        // margin-left: 5px; 
+        color: $white-color;
+    }
+
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        bottom: 0;
+        left: 0;
+        transition: 0.3;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, .3);
+        animation: ripple 2s linear infinite;
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        bottom: 0;
+        left: 0;
+        transition: 0.3;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, .3);
+        animation: ripple 2s linear 1s infinite;
+    }
+}
+
+.video-box2 {
+    border-radius: 20px;
+    margin-left: 50px;
+
+    img {
+        border-radius: 20px;
+    }
+}
+
+.content-box1 {
+    background-color: $white-color;
+    box-shadow: 0px 6px 30px rgba(1, 15, 28, 0.07);
+    padding: 60px 160px 60px 60px;
+}
+
+.content-box-bottom {
+    padding-left: 60px;
+    margin-top: 10px;
+}
+
+@include lg {
+    .video-box2 {
+        margin-left: 0;
+        margin-top: 30px;
+    }
+
+    .content-box-bottom {
+        text-align: center;
+        padding-left: 0;
+    }
+}
+
+@include sm {
+    .content-box1 {
+        padding: 40px;
+    }
+}
+
+@include xs {
+    .content-box1 {
+        padding: 40px 20px;
+    }
+}
+
+/* Video Area ---------------------------------*/
+.video-area-two {
+    position: relative;
+    background-color: $title-color;
+
+}
+
+.video-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    @include md {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .video-box1 {
+        img {
+            min-width: 1153px;
+            min-height: 100%;
+
+            @media(max-width:1800px) {
+                min-width: 100%;
+            }
+        }
+    }
+}
+
+.video-text {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 20px;
+
+    @include md {
+        padding: 80px 10px;
+    }
+
+    .sub-title2 {
+        font-size: 20px;
+    }
+
+    .sec-title {
+        @include xl {
+            font-size: 38px;
+        }
+
+        @include lg {
+            font-size: 30px;
+        }
+    }
+
+    .sec-desc {
+        font-size: 18px;
+
+        @include lg {
+            font-size: 16px;
+        }
+    }
+}
+
+.video-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 40px;
+
+    &.style2 {
+        @include xs {
+            display: flex;
+            gap: 10px;
+        }
+
+        @include vxs {
+            display: grid;
+            gap: 10px 0;
+        }
+    }
+
+    @include xs {
+        display: grid;
+        gap: 10px 0;
+    }
+
+    .th-btn {
+        margin: 0;
+    }
+}

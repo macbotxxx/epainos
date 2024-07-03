@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <base href="../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="{% static 'me/images/favicon.png' %}">
+    <!-- Page Title  -->
+    <title>Epainos Admin</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="{% static 'me/assets/css/dashlite.css' %}">
+    <link id="skin-default" rel="stylesheet" href="{% static 'me/assets/css/theme.css' %}">
+</head>
+
+<body class="nk-body bg-lighter npc-default has-sidebar ">
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-sidebar-brand">
+                        <a href="html/index.html" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" src="{% static 'assets/img/logo1.png' %}" srcset="{% static 'assets/img/logo1.png' %} 2x" alt="logo">
+                            <img class="logo-dark logo-img" src="{% static 'assets/img/logo1.png' %}" srcset="{% static 'assets/img/logo1.png' %} 2x" alt="logo-dark">
+                            <img class="logo-small logo-img logo-img-small" src="{% static 'assets/img/logo1.png' %}" srcset="{% static 'assets/img/logo1.png' %} 2x" alt="logo-small">
+                        </a>
+                    </div>
+                    <div class="nk-menu-trigger me-n2">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                    </div>
+                </div><!-- .nk-sidebar-element -->
+                <div class="nk-sidebar-element">
+                    <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-menu" data-simplebar>
+                            <ul class="nk-menu">
+                                <li class="nk-menu-item">
+                                    <a href="{% url 'users:dash_index' %}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-view-col"></em></span>
+                                        <span class="nk-menu-text">Dashboard</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="{% url 'users:contestant_vote_list' %}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-view-col"></em></span>
+                                        <span class="nk-menu-text">All Votes</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-heading">
+                                    <h6 class="overline-title text-primary-alt">Contestant</h6>
+                                </li><!-- .nk-menu-heading -->
+                                <li class="nk-menu-item">
+                                    <a href="{% url 'users:contestant_upload' %}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-view-col"></em></span>
+                                        <span class="nk-menu-text">Upload Contestant</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="{% url 'users:contestant_list' %}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-view-col"></em></span>
+                                        <span class="nk-menu-text">Contestant List</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-heading">
+                                    <h6 class="overline-title text-primary-alt">Transactions</h6>
+                                </li><!-- .nk-menu-heading -->
+                                <li class="nk-menu-item">
+                                    <a href="{% url 'users:transaction_list' %}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-view-col"></em></span>
+                                        <span class="nk-menu-text">Transactions</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                            </ul><!-- .nk-menu -->
+                        </div><!-- .nk-sidebar-menu -->
+                    </div><!-- .nk-sidebar-content -->
+                </div><!-- .nk-sidebar-element -->
+            </div>
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                <div class="nk-header nk-header-fixed is-light">
+                    <div class="container-fluid">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ms-n1">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                            </div>
+                            
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+                                    
+                                    <li class="dropdown user-dropdown">
+                                        <a href="#" class="dropdown-toggle me-n1" data-bs-toggle="dropdown">
+                                            <div class="user-toggle">
+                                                <div class="user-avatar sm">
+                                                    <em class="icon ni ni-user-alt"></em>
+                                                </div>
+                                                <div class="user-info d-none d-xl-block">
+                                                    <div class="user-status user-status-unverified">Admin</div>
+                                                    <div class="user-name dropdown-indicator">{{ user.email }}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
+                                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                <div class="user-card">
+                                                    <div class="user-avatar">
+                                                        <span>AB</span>
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <span class="lead-text">Email</span>
+                                                        <span class="sub-text">{{ user.email }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="{% url 'account_logout' %}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!-- .nk-header-wrap -->
+                    </div><!-- .container-fliud -->
+                </div>
+                <!-- main header @e -->
+                {% block content %}
+
+                {% endblock content %}
+               
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+   
+    <!-- JavaScript -->
+    <script src="{% static 'me/assets/js/bundle.js' %}"></script>
+    <script src="{% static 'me/assets/js/scripts.js' %}"></script>
+    <script src="{% static 'me/assets/js/charts/chart-ecommerce.js' %}"></script>
+</body>
+
+</html>

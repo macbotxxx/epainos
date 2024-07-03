@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="displayContainer">
+    <p>full Name: <span id="fullNameDisplay"></span></p>
+    <p>email : <span id="emailDisplay"></span></p>
+    <p>phone number : <span id="phoneNumberDisplay"></span></p>
+
+    <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+        <div>
+          Your order is N<span id="numberOfVoteDisplay"></span>
+        </div>
+        <input type="hidden" name="public_key" value="FLWPUBK_TEST-019b573fc777164b2ee772f165ff69e4-X" />
+        <input type="hidden" name="customer[email]" id="emailInput" />
+        <input type="hidden" name="customer[name]" id="nameInput" />
+        <input type="hidden" name="customer[phone_number]" id="phoneNumberInput" />
+        <input type="hidden" name="tx_ref" id="txrefInput" />
+        <input type="hidden" name="amount" id="numberOfVoteInput" />
+        <input type="hidden" name="currency" value="NGN" />
+        <input type="hidden" name="redirect_url" value="https://78e4-105-112-179-27.ngrok-free.app/users/verify/" />
+        <br>
+        <button type="submit" id="start-payment-button">Pay Now</button>
+      </form>
+</div>
+
+<script>
+    // Function to get URL parameters
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Get parameters from the URL
+    var fullName = getUrlParameter('full_name');
+    var emailAddress = getUrlParameter('email');
+    var phoneNumber = getUrlParameter('phone_number');
+    var numberOfVote = getUrlParameter('number_of_vote');
+    var tXref = getUrlParameter('tx_ref');
+
+    // Display the parameters in the HTML
+    document.getElementById('fullNameDisplay').textContent = fullName;
+    document.getElementById('emailDisplay').textContent = emailAddress;
+    document.getElementById('phoneNumberDisplay').textContent = phoneNumber;
+    document.getElementById('numberOfVoteDisplay').textContent = numberOfVote;
+    // Set the values of hidden input fields
+    document.getElementById('nameInput').value = fullName;
+    document.getElementById('emailInput').value = emailAddress;
+    document.getElementById('numberOfVoteInput').value = numberOfVote;
+    document.getElementById('phoneNumberInput').value = phoneNumber;
+    document.getElementById('txrefInput').value = tXref;
+    console.log(tXref)
+
+</script>
+{% endblock content %}
