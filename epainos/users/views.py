@@ -8,15 +8,19 @@ from django.views.generic import RedirectView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
+from django.views.generic import FormView
 from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.db.models import Sum
 from django.shortcuts import redirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from epainos.users.models import User, Contestant, ContestantImage, Transactions, ContestantVideo
-from .forms import ContestantProfileForm, ContestantVote
+from .forms import ContestantProfileForm, ContestantVote, ContestantEditProfileForm, FormatForm
 from .tasks import sendSMS
+from .filters import ContestantFilter, TransactionsFilter
+from .admin import TransactionsResource, ContestantResource
 
 
 def generate_random_10_digits():
@@ -187,6 +191,7 @@ class ContestantUpload(LoginRequiredMixin ,TemplateView):
 
 contestant_upload = ContestantUpload.as_view()
 
+
 class ContestantList(LoginRequiredMixin, ListView):
     model = Contestant
     template_name = "dashboard/contestant_list.html"
@@ -270,7 +275,7 @@ contestant_vote_list = ContestantVoteList.as_view()
 
 class ContestantEditView(LoginRequiredMixin, UpdateView):
     model = Contestant
-    form_class = ContestantProfileForm
+    form_class = ContestantEditProfileForm
     template_name = "dashboard/contestant_upload.html"
     # context_object_name = "template_form"
     success_url = reverse_lazy("users:contestant_list")
@@ -279,17 +284,24 @@ class ContestantEditView(LoginRequiredMixin, UpdateView):
     #     # Filter Farm objects based on the authenticated user
     #     return Farm.objects.all()
 
-    def form_valid(self, form):
-        messages.success(self.request, "Your message here")
-        return super().form_valid(form)
+    # def form_valid(self, form, request, *args, **kwargs):
+    #     form = ContestantProfileForm(request.POST, request.FILES)
+    #     files = request.FILES.getlist('contestant_image')
+    #     contestant_qs = Contestant.objects.create(
+    #         first_name=form.cleaned_data.get("first_name"),
+    #         middle_name=form.cleaned_data.get("middle_name"),
+    #         last_name=form.cleaned_data.get("last_name"),
+    #         stage_name=form.cleaned_data.get("stage_name"),
+    #         contestant_inspiration=form.cleaned_data.get("contestant_inspiration"),
+    #         contestant_videos=form.cleaned_data.get("contestant_videos")
+    #     )
+    #     for f in files:
+    #         image=ContestantImage.objects.create(image=f)
+    #         contestant_qs.contestant_images.add(image)
+        
+    #     contestant_qs.save()
+    #     return redirect('users:contestant_list')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # Add additional context data if needed
-        context["title"] = "Update Farm Record"
-        context["button_content"] = "Yes, Submit update"
-        context["form_title"] = "edit farm record form"
-        return context
 
 
 update_contestant_profile = ContestantEditView.as_view()
@@ -333,12 +345,47 @@ class ContestantDetailsView(DetailView):
 contestant_view = ContestantDetailsView.as_view()
 
 
-class TransactionList(LoginRequiredMixin, ListView):
+class TransactionList(LoginRequiredMixin, ListView, FormView):
     model = Transactions
     template_name = "dashboard/transactions.html"
     context_object_name = "tranx_qs"
-    # form_class = FormatForm
+    form_class = FormatForm
     paginate_by = 100
+
+    def get_queryset(self):
+        queryset = Transactions.objects.all()
+        self.filter = TransactionsFilter(self.request.GET, queryset=queryset)
+        return self.filter.qs
+
+    def post(self, request, *args, **kwargs):
+        export_format = request.POST.get('format')
+
+        dataset = TransactionsResource().export()
+        if export_format == "xls":
+            exported_data = dataset.export('xls')
+            content_type = 'application/vnd.ms-excel'
+            filename = 'transactions.xls'
+        elif export_format == "csv":
+            exported_data = dataset.export('csv')
+            content_type = 'text/csv'
+            filename = 'transactions.csv'
+        else:
+            # Default to JSON if format is not specified or unknown
+            exported_data = dataset.export('json')
+            content_type = 'application/json'
+            filename = 'transactions.json'
+
+        response = HttpResponse(exported_data, content_type=content_type)
+        response['Content-Disposition'] = f"attachment; filename={filename}"
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = TransactionsFilter()
+        context['tranx_filter'] = self.filter
+        context["form_export"] = FormatForm()
+        context['count'] = self.filter.qs.count()  # Pass the filter object to the template
+        return context
 
 
 transaction_list = TransactionList.as_view()

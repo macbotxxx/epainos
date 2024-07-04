@@ -108,7 +108,7 @@ class Contestant(BaseModel):
         'ContestantImage',
     )
 
-    contestant_videos =  models.JSONField(default=list)
+    contestant_videos = models.JSONField(default=list)
 
     def save(self, *args, **kwargs) -> None:
         self.name = self.first_name + " " + self.middle_name + " " + self.last_name
@@ -118,6 +118,9 @@ class Contestant(BaseModel):
             if not object_with_similar_ref:
                 self.contestant_id = contestant_id
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.first_name} {self.middle_name} {self.last_name}"
 
     class Meta:
         ordering = [

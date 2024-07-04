@@ -9,6 +9,18 @@ from django.forms.widgets import TextInput
 from .models import User, Contestant, ContestantImage
 
 
+FORMAT_CHOICES = (
+    ('xls', 'xls'),
+    ('csv', 'csv'),
+    ('json', 'json'),
+)
+
+class FormatForm(forms.Form):
+    format = forms.ChoiceField(
+        choices=FORMAT_CHOICES,
+        # widget=forms.Select(attrs={'class':'form-select'})
+    )
+
 class UserAdminChangeForm(admin_forms.UserChangeForm):
     class Meta(admin_forms.UserChangeForm.Meta):  # type: ignore[name-defined]
         model = User
@@ -88,15 +100,31 @@ class MultipleURLField(forms.URLField):
         # Clean each URL individually
         cleaned_data = [super().clean(v) for v in value]
         return cleaned_data
+    
 
-class ContestantProfileForm(forms.Form):
-    first_name = forms.CharField()
-    middle_name = forms.CharField()
-    last_name = forms.CharField()
-    stage_name = forms.CharField()
-    contestant_inspiration = forms.CharField()
+class ContestantImageForm(forms.ModelForm):
+    image = MultipleURLField()
+    class Meta:
+        model = ContestantImage
+        fields = ('image',)
+
+
+class ContestantProfileForm(forms.ModelForm):
     contestant_image = MultipleFileField()
     contestant_videos = MultipleURLField()
+
+    class Meta:
+        model = Contestant
+        fields = ('first_name', 'middle_name', 'last_name', 'stage_name', 'contestant_inspiration', 'contestant_image', 'contestant_videos')
+
+
+class ContestantEditProfileForm(forms.ModelForm):
+    contestant_image = MultipleFileField()
+    # contestant_videos = MultipleURLField()
+
+    class Meta:
+        model = Contestant
+        fields = ('first_name', 'middle_name', 'last_name', 'stage_name', 'contestant_inspiration', )
 
 
 class ContestantVote(forms.Form):

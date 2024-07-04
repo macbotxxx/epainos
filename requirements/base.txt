@@ -16,3 +16,5 @@ django-allauth[mfa]==0.63.3  # https://github.com/pennersr/django-allauth
 django-crispy-forms==2.2  # https://github.com/django-crispy-forms/django-crispy-forms
 crispy-bootstrap5==2024.2  # https://github.com/django-crispy-forms/crispy-bootstrap5
 django-redis==5.4.0  # https://github.com/jazzband/django-redis
+django-filter ##https://django-filter.readthedocs.io/en/stable/guide/install.html
+django-import-export #https://django-import-export.readthedocs.io/en/stable/installation.html
