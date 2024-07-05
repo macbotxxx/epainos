@@ -67,14 +67,6 @@ class Contestant(BaseModel):
         help_text=_("this hold the First Name of the contestant")
     )
 
-    middle_name = models.CharField(
-        verbose_name=_("Middle Name"),
-        max_length=100,
-        null=True,
-        blank=True,
-        help_text=_("this hold the middle name of the contestant")
-    )
-
     last_name = models.CharField(
         verbose_name=_("Last Name"),
         max_length=100,
@@ -111,7 +103,7 @@ class Contestant(BaseModel):
     contestant_videos = models.JSONField(default=list)
 
     def save(self, *args, **kwargs) -> None:
-        self.name = self.first_name + " " + self.middle_name + " " + self.last_name
+        self.name = self.first_name + " " + self.last_name
         while not self.contestant_id:
             contestant_id = generate_random_10_digits()
             object_with_similar_ref = Contestant.objects.filter(contestant_id=contestant_id)
@@ -120,7 +112,7 @@ class Contestant(BaseModel):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.first_name} {self.middle_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name}"
 
     class Meta:
         ordering = [

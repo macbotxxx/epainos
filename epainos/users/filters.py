@@ -32,5 +32,5 @@ class ContestantFilter(django_filters.FilterSet):
 
     class Meta:
         model = Contestant
-        fields = ('first_name', 'middle_name', 'last_name')
+        fields = ('first_name', 'last_name')
 

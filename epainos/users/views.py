@@ -10,11 +10,13 @@ from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import FormView
 from django.views.generic import TemplateView
+from django.views import View
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.db.models import Sum
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 
 from epainos.users.models import User, Contestant, ContestantImage, Transactions, ContestantVideo
 from .forms import ContestantProfileForm, ContestantVote, ContestantEditProfileForm, FormatForm
@@ -171,7 +173,6 @@ class ContestantUpload(LoginRequiredMixin ,TemplateView):
         if form.is_valid():
             contestant_qs = Contestant.objects.create(
                 first_name=form.cleaned_data.get("first_name"),
-                middle_name=form.cleaned_data.get("middle_name"),
                 last_name=form.cleaned_data.get("last_name"),
                 stage_name=form.cleaned_data.get("stage_name"),
                 contestant_inspiration=form.cleaned_data.get("contestant_inspiration"),
@@ -273,38 +274,22 @@ class ContestantVoteList(LoginRequiredMixin, ListView):
 contestant_vote_list = ContestantVoteList.as_view()
 
 
-class ContestantEditView(LoginRequiredMixin, UpdateView):
-    model = Contestant
-    form_class = ContestantEditProfileForm
-    template_name = "dashboard/contestant_upload.html"
-    # context_object_name = "template_form"
-    success_url = reverse_lazy("users:contestant_list")
+class EditContestantProfileView(View):
+    def get(self, request, pk):
+        contestant = get_object_or_404(Contestant, pk=pk)
+        form = ContestantEditProfileForm(instance=contestant)
+        return render(request, 'dashboard/contestant_upload.html', {'form': form, 'contestant': contestant})
 
-    # def get_queryset(self):
-    #     # Filter Farm objects based on the authenticated user
-    #     return Farm.objects.all()
+    def post(self, request, pk):
+        contestant = get_object_or_404(Contestant, pk=pk)
+        form = ContestantEditProfileForm(request.POST, request.FILES, instance=contestant)
+        if form.is_valid():
+            form.save()
+            return redirect('users:contestant_list')  # Adjust the redirect URL as needed
+        return render(request, 'dashboard/contestant_upload.html', {'form': form, 'contestant': contestant})
+    
 
-    # def form_valid(self, form, request, *args, **kwargs):
-    #     form = ContestantProfileForm(request.POST, request.FILES)
-    #     files = request.FILES.getlist('contestant_image')
-    #     contestant_qs = Contestant.objects.create(
-    #         first_name=form.cleaned_data.get("first_name"),
-    #         middle_name=form.cleaned_data.get("middle_name"),
-    #         last_name=form.cleaned_data.get("last_name"),
-    #         stage_name=form.cleaned_data.get("stage_name"),
-    #         contestant_inspiration=form.cleaned_data.get("contestant_inspiration"),
-    #         contestant_videos=form.cleaned_data.get("contestant_videos")
-    #     )
-    #     for f in files:
-    #         image=ContestantImage.objects.create(image=f)
-    #         contestant_qs.contestant_images.add(image)
-        
-    #     contestant_qs.save()
-    #     return redirect('users:contestant_list')
-
-
-
-update_contestant_profile = ContestantEditView.as_view()
+update_contestant_profile = EditContestantProfileView.as_view()
 
 
 class ContestantDeleteView(LoginRequiredMixin, DeleteView):

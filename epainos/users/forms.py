@@ -115,7 +115,7 @@ class ContestantProfileForm(forms.ModelForm):
 
     class Meta:
         model = Contestant
-        fields = ('first_name', 'middle_name', 'last_name', 'stage_name', 'contestant_inspiration', 'contestant_image', 'contestant_videos')
+        fields = ('first_name','last_name', 'stage_name', 'contestant_inspiration', 'contestant_image', 'contestant_videos')
 
 
 class ContestantEditProfileForm(forms.ModelForm):
@@ -124,7 +124,7 @@ class ContestantEditProfileForm(forms.ModelForm):
 
     class Meta:
         model = Contestant
-        fields = ('first_name', 'middle_name', 'last_name', 'stage_name', 'contestant_inspiration', )
+        fields = ('first_name','last_name', 'stage_name', 'contestant_inspiration', )
 
 
 class ContestantVote(forms.Form):
@@ -133,3 +133,36 @@ class ContestantVote(forms.Form):
     email = forms.CharField()
     phone_number = forms.IntegerField()
     number_of_vote = forms.IntegerField()
+
+
+class ContestantEditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Contestant
+        fields = [
+            'contestant_id', 'name', 'first_name', 'last_name',
+            'stage_name', 'contestant_inspiration',
+            'contestant_videos'
+        ]
+        widgets = {
+            'contestant_videos': forms.Textarea(attrs={'rows': 3}),
+        }
+
+    contestant_images = MultipleFileField(required=False)
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.pk:
+            self.fields['contestant_images'].initial = self.instance.contestant_images.all()
+    
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+            self.save_m2m()
+            if self.cleaned_data['contestant_images']:
+                images = self.cleaned_data['contestant_images']
+                for image in images:
+                    img_instance = ContestantImage.objects.create(image=image)
+                    instance.contestant_images.add(img_instance)
+        return instance

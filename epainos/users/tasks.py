@@ -32,11 +32,11 @@ def sendSMS(phone_number):
             },
             data={
                 "token": SMS_TOKEN,
-                "sender": "epainos",
+                "sender": "epainosmusic",
                 "to": sms_number,
                 "message": "Thank you for your valuable support. Your participation truly makes a difference!",
                 "type": "0",
-                "routing": "2",
+                "routing": "3",
             }, timeout=15)
         print('Response HTTP Status Code: {status_code}'.format(
             status_code=response.status_code))

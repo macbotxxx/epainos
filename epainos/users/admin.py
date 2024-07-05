@@ -66,8 +66,8 @@ class UserAdmin(auth_admin.UserAdmin):
 
 @admin.register(Contestant)
 class ContestantAdmin(admin.ModelAdmin):
-    list_display = ('contestant_id', 'first_name', 'middle_name', 'last_name', 'stage_name')
-    list_display_links = ('contestant_id', 'first_name', 'middle_name', 'last_name', 'stage_name')
+    list_display = ('contestant_id', 'first_name', 'last_name', 'stage_name')
+    list_display_links = ('contestant_id', 'first_name', 'last_name', 'stage_name')
 
 
 @admin.register(ContestantImage)
