@@ -16,26 +16,36 @@
                                        
                                     </div>
                                 </div><!-- .nk-block-head-content -->
+                                <form action="" method="post">
+                                    <div class="card-tools">
+                                    <h4>Export Data</h4>
+    
+                                        <div class="form-inline flex-nowrap gx-3">
+                                                {% csrf_token %}
+                                            <div class="form-wrap w-150px">
+                                                {{ form_export | crispy }}
+                                            </div>
+                                            <div class="btn-wrap">
+                                                <span class="d-none d-md-block"><button class="btn btn-dim btn-outline-light" type="submit">Export Data</button></span>
+                                                <span class="d-md-none"><button class="btn btn-dim btn-outline-light btn-icon disabled"><em class="icon ni ni-arrow-right"></em></button></span>
+                                            </div>
+                                        </div><!-- .form-inline -->
+                                    </div><!-- .card-tools -->
+                                </form>
+                                <div class="drodown">
+                                    <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-cloud"></em><span><span class="d-none d-md-inline">Filter Transactions</span></span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <div class="card">
+                                        <form action="" method="get">
+                                            {% csrf_token %}
+                                            {{ filter.form | crispy }}
+                                            <button class="btn btn-primary" type="submit">search</button>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
                                 <div class="nk-block-head-content">
-                                    <!-- <div class="toggle-wrap nk-block-tools-toggle">
-                                        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
-                                        <div class="toggle-expand-content" data-content="pageMenu">
-                                            <ul class="nk-block-tools g-3">
-                                                <li><a href="#" class="btn btn-white btn-outline-light"><em class="icon ni ni-download-cloud"></em><span>Export</span></a></li>
-                                                <li class="nk-block-tools-opt">
-                                                    <div class="drodown">
-                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-primary" data-bs-toggle="dropdown"><em class="icon ni ni-plus"></em></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <ul class="link-list-opt no-bdr">
-                                                                <li><a href="#"><span>Add Customer</span></a></li>
-                                                                <li><a href="#"><span>Import Customer</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div> -->
+                                    
                                 </div><!-- .nk-block-head-content -->
                             </div><!-- .nk-block-between -->
                         </div><!-- .nk-block-head -->

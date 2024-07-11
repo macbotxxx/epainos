@@ -16,6 +16,14 @@ class TransactionsFilter(django_filters.FilterSet):
 
 
 class ContestantFilter(django_filters.FilterSet):
+    # Define a queryset for the dropdown choices
+
+    class Meta:
+        model = Contestant
+        fields = ('contestant_id',  'first_name', 'last_name', 'stage_name')
+        
+
+class ContestantFilter(django_filters.FilterSet):
     start_date = DateFilter(
         field_name="created_date__date",
         lookup_expr="gte",

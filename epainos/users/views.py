@@ -21,7 +21,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from epainos.users.models import User, Contestant, ContestantImage, Transactions, ContestantVideo
 from .forms import ContestantProfileForm, ContestantVote, ContestantEditProfileForm, FormatForm
 from .tasks import sendSMS
-from .filters import ContestantFilter, TransactionsFilter
+from .filters import ContestantFilter, TransactionsFilter, ContestantFilter
 from .admin import TransactionsResource, ContestantResource
 
 
@@ -197,58 +197,43 @@ class ContestantList(LoginRequiredMixin, ListView):
     model = Contestant
     template_name = "dashboard/contestant_list.html"
     context_object_name = "contestant_qs"
-    # form_class = FormatForm
+    form_class = FormatForm
     paginate_by = 100
 
-    # def get_queryset(self):
-    #     queryset = FarmerAccount.objects.all()
-    #     self.filter = FarmDataFilter(self.request.GET, queryset=queryset)
-    #     return self.filter.qs
+    def get_queryset(self):
+        queryset = Contestant.objects.all()
+        self.filter = ContestantFilter(self.request.GET, queryset=queryset)
+        return self.filter.qs
 
-    # def post(self, request, *args, **kwargs):
-    #     record_type = request.POST.get('record')
-    #     export_format = request.POST.get('format')
-    #     if record_type == "farmer_account":
-    #         dataset = FarmerAccountResource().export()
-    #         if export_format == "xls":
-    #             exported_data = dataset.export('xls')
-    #             content_type = 'application/vnd.ms-excel'
-    #             filename = 'farmer_record.xls'
-    #         elif export_format == "csv":
-    #             exported_data = dataset.export('csv')
-    #             content_type = 'text/csv'
-    #             filename = 'farmer_record.csv'
-    #         else:
-    #             # Default to JSON if format is not specified or unknown
-    #             exported_data = dataset.export('json')
-    #             content_type = 'application/json'
-    #             filename = 'farmer_record.json'
-    #     else:
-    #         dataset = FarmResource().export()
-    #         if export_format == "xls":
-    #             exported_data = dataset.export('xls')
-    #             content_type = 'application/vnd.ms-excel'
-    #             filename = 'farm_record.xls'
-    #         elif export_format == "csv":
-    #             exported_data = dataset.export('csv')
-    #             content_type = 'text/csv'
-    #             filename = 'farm_record.csv'
-    #         else:
-    #             # Default to JSON if format is not specified or unknown
-    #             exported_data = dataset.export('json')
-    #             content_type = 'application/json'
-    #             filename = 'farm_record.json'
+    def post(self, request, *args, **kwargs):
+        export_format = request.POST.get('format')
 
-    #     response = HttpResponse(exported_data, content_type=content_type)
-    #     response['Content-Disposition'] = f"attachment; filename={filename}"
-    #     return response
+        dataset = ContestantResource().export()
+        if export_format == "xls":
+            exported_data = dataset.export('xls')
+            content_type = 'application/vnd.ms-excel'
+            filename = 'contestants.xls'
+        elif export_format == "csv":
+            exported_data = dataset.export('csv')
+            content_type = 'text/csv'
+            filename = 'contestants.csv'
+        else:
+            # Default to JSON if format is not specified or unknown
+            exported_data = dataset.export('json')
+            content_type = 'application/json'
+            filename = 'contestants.json'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     # context['filter'] = FarmerCardFilter()
-    #     context['farmer_filter'] = self.filter
-    #     context['count'] = self.filter.qs.count()  # Pass the filter object to the template
-    #     return context
+        response = HttpResponse(exported_data, content_type=content_type)
+        response['Content-Disposition'] = f"attachment; filename={filename}"
+        return response
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = ContestantFilter()
+        context['tranx_filter'] = self.filter
+        context["form_export"] = FormatForm()
+        context['count'] = self.filter.qs.count()  # Pass the filter object to the template
+        return context
 
 
 contestant_list = ContestantList.as_view()
@@ -462,3 +447,11 @@ class PaymentVerify(TemplateView):
 
 
 payment_verify = PaymentVerify.as_view()
+
+
+class PolicyPage(TemplateView):
+    template_name = "pages/policy.html"
+
+
+policy_page = PolicyPage.as_view()
+

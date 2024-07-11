@@ -74,3 +74,10 @@ class ContestantAdmin(admin.ModelAdmin):
 class ContestantImageAdmin(admin.ModelAdmin):
     list_display = ('image',)
     list_display_links = ('image',)
+
+
+@admin.register(Transactions)
+class TransactionsAdmin(admin.ModelAdmin):
+    list_display = ('amount_paid', 'payment_ref', 'voter_name', 'voter_email', 'voter_phone_number')
+    list_display_links = ('amount_paid', 'payment_ref', 'voter_name', 'voter_email', 'voter_phone_number')
+    readonly_fields = ('contestant', 'amount_paid', 'payment_ref', 'voter_name', 'voter_email', 'voter_phone_number', 'settled', 'status')

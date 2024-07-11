@@ -13,6 +13,8 @@ urlpatterns = [
     path("", views.home_index, name="home"),
     path("contestant-list", views.home_contestant_list, name="home_contestant_list"),
     path("<str:pk>/contestant-details/", views.contestant_view, name="contestant_view"),
+    path("policy", views.policy_page, name="policy_page"),
+
 
     path(
         "about/",
