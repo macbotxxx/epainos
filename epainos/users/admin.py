@@ -12,6 +12,7 @@ from .models import User
 from .models import Contestant
 from .models import ContestantImage
 from .models import Transactions
+from .models import ContestantStage
 
 if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
     # Force the `admin` sign in process to go through the `django-allauth` workflow:
@@ -81,3 +82,9 @@ class TransactionsAdmin(admin.ModelAdmin):
     list_display = ('amount_paid', 'payment_ref', 'voter_name', 'voter_email', 'voter_phone_number')
     list_display_links = ('amount_paid', 'payment_ref', 'voter_name', 'voter_email', 'voter_phone_number')
     readonly_fields = ('contestant', 'amount_paid', 'payment_ref', 'voter_name', 'voter_email', 'voter_phone_number', 'settled', 'status')
+
+
+@admin.register(ContestantStage)
+class ContestantStageAdmin(admin.ModelAdmin):
+    list_display = ('stage',)
+    list_display_links = ('stage',)

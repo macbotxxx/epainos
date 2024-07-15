@@ -86,11 +86,11 @@
     <!--==============================
     Mobile Menu
   ============================== -->
-    <div class="th-menu-wrapper">
+     <div class="th-menu-wrapper">
         <div class="th-menu-area style3 text-center">
             <button class="th-menu-toggle style3"><i class="fal fa-times"></i></button>
             <div class="mobile-logo">
-                <a href="/"><img src="{% static 'assets/img/logo.png' %}" alt="Danza"></a>
+                <a href="/"><img src="{% static 'assets/img/logo1.png' %}" alt="Danza"></a>
             </div>
             <div class="th-mobile-menu">
                 <ul>
@@ -144,10 +144,10 @@
 <div class="breadcumb-wrapper " data-bg-src="assets/img/breadcumb/breadcumb-bg.jpg">
     <div class="container">
         <div class="breadcumb-content">
-            <h1 class="breadcumb-title">Contestants</h1>
+            <h1 class="breadcumb-title">{{ contestant_stage.stage | title }}</h1>
             <ul class="breadcumb-menu">
                 <li><a href="/">Home</a></li>
-                <li>Our Team</li>
+                <li>{{ contestant_stage.stage | title }}</li>
             </ul>
         </div>
     </div>
@@ -173,7 +173,7 @@ Team Area
                                     <span class="team-desig">{{ i.stage_name | title }}</span>
                                 </div>
                                 <div class="team-social">
-                                    <a href="{% url 'contestant_view' i.pk %}" class="btn btn-primay">Vote</a>
+                                    <a href="{% url 'contestant_view' i.pk %}" class="btn btn-primay">Click To Vote</a>
                                 </div>
                 </div>
             </div>
@@ -225,9 +225,9 @@ Team Area
                                     <i class="fa-regular fa-envelope"></i>
                                 </div>
                                 <p class="info-box_text">
-                                    <a href="mailto:epainosmusic2024@gmail.com" class="info-box_link">epainosmusic2024@gmail.com</a>
-                                    <a href="mailto:info@ Epainosmusic.com.ng" class="info-box_link">info@ Epainosmusic.com.ng</a>
-                                </p>
+                                        <a href="mailto:epainosmusic2024@gmail.com" class="info-box_link">epainosmusic2024@gmail.com</a>
+                                        <a href="mailto:info@epainosmusic.com.ng" class="info-box_link">info@epainosmusic.com.ng</a>
+                                    </p>
                             </div>
                             <div class="info-box">
                                 <div class="info-box_icon">
@@ -237,15 +237,12 @@ Team Area
                             </div>
                         </div>
                     </div>
-                    <div class="widget footer-widget mb-0">
-                        <div class="th-social footer-social">
-                            <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
-                            <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://google.com"><i class="fa-brands fa-google-plus-g"></i></a>
-                            <a href="https://youtube.com"><i class="fa-brands fa-youtube"></i></a>
-                        </div>
-                    </div>
+                    <div class="th-social footer-social">
+                                <a href="https://facebook.com/epainosmusic"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://instagram.com/epainosmusic"><i class="fab fa-instagram"></i></a>
+                                <a href="https://google.com/epainosmusic2024"><i class="fa-brands fa-google-plus-g"></i></a>
+                                <a href="https://youtube.com/epainosmusic"><i class="fa-brands fa-youtube"></i></a>
+                            </div>
                 </div>
             </div>
         </div>

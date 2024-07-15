@@ -18,7 +18,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
-from epainos.users.models import User, Contestant, ContestantImage, Transactions, ContestantVideo
+from epainos.users.models import User, Contestant, ContestantImage, Transactions, ContestantVideo, ContestantStage
 from .forms import ContestantProfileForm, ContestantVote, ContestantEditProfileForm, FormatForm
 from .tasks import sendSMS
 from .filters import ContestantFilter, TransactionsFilter, ContestantFilter
@@ -66,6 +66,7 @@ class HomeContestantList(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         tranx_qs = Transactions.objects.all()
+        contestant_stage = ContestantStage.objects.all().first()
         contestant_qs = Contestant.objects.all().order_by("-number_of_vote")
         total_amount_paid = Transactions.objects.aggregate(total=Sum('amount_paid'))['total']
         total_vote = Contestant.objects.aggregate(total=Sum('number_of_vote'))['total']
@@ -78,6 +79,7 @@ class HomeContestantList(TemplateView):
         context["total_amount_paid"] = total_amount_paid
         context["total_vote"] = total_vote
         context["form"] = ContestantProfileForm()
+        context["contestant_stage"] = contestant_stage
         return context
 
 

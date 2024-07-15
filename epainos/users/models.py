@@ -49,6 +49,7 @@ class User(AbstractUser):
         """
         return reverse("users:detail", kwargs={"pk": self.id})
 
+
 class Contestant(BaseModel):
     contestant_id = models.CharField(
         verbose_name=_("Contestant ID"),
@@ -233,3 +234,20 @@ class Transactions(BaseModel):
         ]
         verbose_name = _("Transactions")
         verbose_name_plural = _("Transactions")
+
+
+class ContestantStage(BaseModel):
+    stage = models.CharField(
+        verbose_name=_("Stage"),
+        max_length=10,
+        null=True,
+        blank=True,
+        help_text=_("this hold the Stage which will is active")
+    )
+
+    class Meta:
+        ordering = [
+            "-created_date",
+        ]
+        verbose_name = _("Contestant Stage")
+        verbose_name_plural = _("Contestant Stage")
