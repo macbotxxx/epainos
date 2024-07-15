@@ -239,7 +239,7 @@ class Transactions(BaseModel):
 class ContestantStage(BaseModel):
     stage = models.CharField(
         verbose_name=_("Stage"),
-        max_length=10,
+        max_length=100,
         null=True,
         blank=True,
         help_text=_("this hold the Stage which will is active")
