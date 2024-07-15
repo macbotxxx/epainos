@@ -45,6 +45,8 @@ class HomeIndex(TemplateView):
         contestant_qs = Contestant.objects.all().order_by("-number_of_vote")
         total_amount_paid = Transactions.objects.aggregate(total=Sum('amount_paid'))['total']
         total_vote = Contestant.objects.aggregate(total=Sum('number_of_vote'))['total']
+        contestant_stage = ContestantStage.objects.all().first()
+
 
         # Add additional context data if needed
         context["tranx_qs"] = tranx_qs[:10]
@@ -54,6 +56,7 @@ class HomeIndex(TemplateView):
         context["total_amount_paid"] = total_amount_paid
         context["total_vote"] = total_vote
         context["form"] = ContestantProfileForm()
+        context["contestant_stage"] = contestant_stage
         return context
 
 
