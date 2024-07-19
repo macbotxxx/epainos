@@ -172,33 +172,7 @@ Team Area
                     <div class="about-card_box">
                         <h4 class="widget_title">Payment Details</h4>
                         <div class="info-box_wrapper">
-                            <div class="info-box">
-                                <div class="info-box_icon">
-                                    <i class="fa-solid fa-user"></i>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="info-box_title">Full Name</h4>
-                                    <span class="info-box_text" id="fullNameDisplay"></span>
-                                </div>
-                            </div>
-                            <div class="info-box">
-                                <div class="info-box_icon">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="info-box_title">Phone</h4>
-                                    <span class="info-box_text" id="phoneNumberDisplay"></span>
-                                </div>
-                            </div>
-                            <div class="info-box">
-                                <div class="info-box_icon">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="info-box_title">Email</h4>
-                                    <span class="info-box_text" id="emailDisplay"></span>
-                                </div>
-                            </div>
+                            
                             <div class="info-box">
                                 <div class="info-box_icon">
                                     <i class="fa-solid fa-wallet"></i>
@@ -212,13 +186,12 @@ Team Area
                         <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
                             
                             <input type="hidden" name="public_key" value="FLWPUBK_TEST-019b573fc777164b2ee772f165ff69e4-X" />
-                            <input type="hidden" name="customer[email]" id="emailInput" />
-                            <input type="hidden" name="customer[name]" id="nameInput" />
-                            <input type="hidden" name="customer[phone_number]" id="phoneNumberInput" />
+                            <input type="hidden" name="customer[email]" value="support@epainosmusic.com" />
+                            <input type="hidden" name="customer[name]" value="Voter" />
                             <input type="hidden" name="tx_ref" id="txrefInput" />
                             <input type="hidden" name="amount" id="numberOfVoteInput" />
                             <input type="hidden" name="currency" value="NGN" />
-                            <input type="hidden" name="redirect_url" value="https://epainosmusic.com.ng/users/verify/" />
+                            <input type="hidden" name="redirect_url" value="https://9eee-105-112-236-242.ngrok-free.app/users/verify/" />
                             <br>
                             <div class="about-btn2">
                                 <button type="submit" class="th-btn style7" id="start-payment-button">Complete Payment</button>
@@ -351,22 +324,15 @@ Team Area
     }
 
     // Get parameters from the URL
-    var fullName = getUrlParameter('full_name');
-    var emailAddress = getUrlParameter('email');
-    var phoneNumber = getUrlParameter('phone_number');
+    
     var numberOfVote = getUrlParameter('number_of_vote');
     var tXref = getUrlParameter('tx_ref');
 
     // Display the parameters in the HTML
-    document.getElementById('fullNameDisplay').textContent = fullName;
-    document.getElementById('emailDisplay').textContent = emailAddress;
-    document.getElementById('phoneNumberDisplay').textContent = phoneNumber;
+    
     document.getElementById('numberOfVoteDisplay').textContent = `${numberOfVote} NGN`;
     // Set the values of hidden input fields
-    document.getElementById('nameInput').value = fullName;
-    document.getElementById('emailInput').value = emailAddress;
     document.getElementById('numberOfVoteInput').value = numberOfVote;
-    document.getElementById('phoneNumberInput').value = phoneNumber;
     document.getElementById('txrefInput').value = tXref;
     console.log(tXref)
 

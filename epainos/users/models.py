@@ -10,7 +10,6 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from helpers.basemodels import BaseModel
-from helpers.payment import FlutterWave
 
 from .managers import UserManager
 
@@ -90,7 +89,7 @@ class Contestant(BaseModel):
     )
 
     number_of_vote = models.IntegerField(
-        verbose_name=_("Contestant Inspiration"),
+        verbose_name=_("Contestant Votes"),
         default=0,
         null=True,
         blank=True,

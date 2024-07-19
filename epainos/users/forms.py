@@ -129,9 +129,6 @@ class ContestantEditProfileForm(forms.ModelForm):
 
 class ContestantVote(forms.Form):
     contestant_id = forms.CharField(widget=forms.HiddenInput())
-    full_name = forms.CharField()
-    email = forms.CharField()
-    phone_number = forms.IntegerField()
     number_of_vote = forms.IntegerField()
 
 

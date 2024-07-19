@@ -260,12 +260,14 @@ Team Area
                                 <span class="team-desig">{{ i.stage_name | title }}</span>
                             </div>
                             <div class="team-social">
-                                <a href="{% url 'contestant_view' i.pk %}" class="btn btn-primay">Vote</a>
+                                <a href="{% url 'contestant_view' i.pk %}" class="btn btn-primay">Vote For Me</a>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
+                    
                 </div>
+                <a href="{% url 'home_contestant_list' %}" class="th-btn blue-btn">View More</a>
             </div>
         </div>
     </section>

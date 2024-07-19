@@ -65,11 +65,15 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
     )
 
+@admin.action(description='Reset Voter Count')
+def reset_count(modeladmin, request, queryset):
+    queryset.update(number_of_vote=0)
+
 @admin.register(Contestant)
 class ContestantAdmin(admin.ModelAdmin):
-    list_display = ('contestant_id', 'first_name', 'last_name', 'stage_name')
-    list_display_links = ('contestant_id', 'first_name', 'last_name', 'stage_name')
-
+    list_display = ('contestant_id', 'first_name', 'last_name', 'stage_name', 'number_of_vote')
+    list_display_links = ('contestant_id', 'first_name', 'last_name', 'stage_name', 'number_of_vote')
+    actions = [reset_count]
 
 @admin.register(ContestantImage)
 class ContestantImageAdmin(admin.ModelAdmin):

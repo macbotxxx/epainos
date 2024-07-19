@@ -373,9 +373,6 @@ class Vote(TemplateView):
         form = ContestantVote(request.POST, request.FILES)
         ref = generate_random_10_digits()
         if form.is_valid():
-            full_name=form.cleaned_data.get("full_name")
-            email=form.cleaned_data.get("email")
-            phone_number=form.cleaned_data.get("phone_number")
             vote_number=form.cleaned_data.get("number_of_vote")
             contestant_id=form.cleaned_data.get("contestant_id")
             number_of_vote=int(vote_number) * 100
@@ -386,17 +383,11 @@ class Vote(TemplateView):
                 contestant=contestant_qs,
                 amount_paid=number_of_vote,
                 payment_ref=f"EPAINOS_REF_{ref}",
-                voter_name=full_name,
-                voter_email=email,
-                voter_phone_number=phone_number
             )
             
             # Return JSON response with validated inputs
             return JsonResponse({
                 'success': True,
-                'full_name': full_name,
-                'email': email,
-                'phone_number': phone_number,
                 'number_of_vote': number_of_vote,
                 'tx_ref': f"EPAINOS_REF_{ref}"
             })
@@ -441,11 +432,7 @@ class PaymentVerify(TemplateView):
         contestant_qs = Contestant.objects.get(id=trans_qs.contestant_id)
         contestant_qs.number_of_vote += int(vote_count)
         contestant_qs.save()
-        # send sms
-        voter_number = trans_qs.voter_phone_number
-        sendSMS.delay(phone_number=voter_number)
-
-
+    
         context["contestant_qs"] = Contestant.objects.all()
         context["form"] = ContestantProfileForm()
         return context
