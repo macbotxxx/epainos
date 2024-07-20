@@ -424,14 +424,19 @@ class PaymentVerify(TemplateView):
         trans_qs = Transactions.objects.get(
             payment_ref=tx_ref
         )
-        trans_qs.settled=True
-        trans_qs.status=status
-        trans_qs.save()
-        vote_count = trans_qs.amount_paid / 100
-        # add the vote to the contestant account
-        contestant_qs = Contestant.objects.get(id=trans_qs.contestant_id)
-        contestant_qs.number_of_vote += int(vote_count)
-        contestant_qs.save()
+        if status == 'cancelled':
+            trans_qs.settled=False
+            trans_qs.status=status
+            trans_qs.save()
+        else:
+            trans_qs.settled=True
+            trans_qs.status=status
+            trans_qs.save()
+            vote_count = trans_qs.amount_paid / 100
+            # add the vote to the contestant account
+            contestant_qs = Contestant.objects.get(id=trans_qs.contestant_id)
+            contestant_qs.number_of_vote += int(vote_count)
+            contestant_qs.save()
     
         context["contestant_qs"] = Contestant.objects.all()
         context["form"] = ContestantProfileForm()
