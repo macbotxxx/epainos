@@ -415,30 +415,28 @@ payment = Payment.as_view()
 class PaymentVerify(TemplateView):
     template_name = "pages/verify.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get(self, request, *args, **kwargs):
         status = self.request.GET.get('status')
         tx_ref = self.request.GET.get('tx_ref')
-        transaction_id = self.request.GET.get('transaction_id')
 
         trans_qs = Transactions.objects.get(
             payment_ref=tx_ref
         )
         if status == 'cancelled':
-            trans_qs.settled=False
-            trans_qs.status=status
-            trans_qs.save()
+            trans_qs.update(settled=False, status=status)
             return redirect("users:cancel_payment")
         else:
-            trans_qs.settled=True
-            trans_qs.status=status
-            trans_qs.save()
+            trans_qs.update(settled=True, status=status)
             vote_count = trans_qs.amount_paid / 100
             # add the vote to the contestant account
             contestant_qs = Contestant.objects.get(id=trans_qs.contestant_id)
             contestant_qs.number_of_vote += int(vote_count)
             contestant_qs.save()
-    
+
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context["contestant_qs"] = Contestant.objects.all()
         context["form"] = ContestantProfileForm()
         return context
