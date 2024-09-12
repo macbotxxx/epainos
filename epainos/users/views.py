@@ -428,6 +428,7 @@ class PaymentVerify(TemplateView):
             trans_qs.settled=False
             trans_qs.status=status
             trans_qs.save()
+            return redirect("users:cancel_payment")
         else:
             trans_qs.settled=True
             trans_qs.status=status
@@ -451,4 +452,11 @@ class PolicyPage(TemplateView):
 
 
 policy_page = PolicyPage.as_view()
+
+
+class CancelPaymentPage(TemplateView):
+    template_name = "pages/cancel_payment.html"
+
+
+cancel_payment = CancelPaymentPage.as_view()
 

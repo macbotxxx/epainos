@@ -27,5 +27,6 @@ urlpatterns = [
     path("contestant-vote-list/", views.contestant_vote_list, name="contestant_vote_list"),
     path("transaction-list/", views.transaction_list, name="transaction_list"),
     path("policy-page/", views.policy_page, name="policy_page"),
+    path("cancel-payment/", views.cancel_payment, name="cancel_payment"),
 
 ]
