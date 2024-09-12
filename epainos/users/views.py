@@ -423,10 +423,14 @@ class PaymentVerify(TemplateView):
             payment_ref=tx_ref
         )
         if status == 'cancelled':
-            trans_qs.update(settled=False, status=status)
+            trans_qs.settled=False
+            trans_qs.status=status
+            trans_qs.save()
             return redirect("users:cancel_payment")
         else:
-            trans_qs.update(settled=True, status=status)
+            trans_qs.settled=True
+            trans_qs.status=status
+            trans_qs.save()
             vote_count = trans_qs.amount_paid / 100
             # add the vote to the contestant account
             contestant_qs = Contestant.objects.get(id=trans_qs.contestant_id)
